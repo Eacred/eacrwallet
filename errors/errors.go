@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 // API originally inspired by https://commandcenter.blogspot.com/2017/12/error-handling-in-upspin.html.
-// Currently, dcrwallet is in the process of converting to the new Go 1.13 error
+// Currently, eacrwallet is in the process of converting to the new Go 1.13 error
 // wrapping features, and this package wraps xerrors for compatibility with Go 1.12.
 
 /*

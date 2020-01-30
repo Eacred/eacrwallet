@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 /*
-Package types implements concrete types for the dcrwallet JSON-RPC API.
+Package types implements concrete types for the eacrwallet JSON-RPC API.
 
 Overview
 

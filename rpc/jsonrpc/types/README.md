@@ -6,14 +6,14 @@ jsonrpc/types
 [![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/Eacred/eacrwallet/rpc/jsonrpc/types)
 
 Package types implements concrete types for marshalling to and from the
-dcrwallet JSON-RPC API.  A comprehensive suite of tests is provided to ensure
+eacrwallet JSON-RPC API.  A comprehensive suite of tests is provided to ensure
 proper functionality.
 
 The provided types are automatically registered with
 [dcrjson](https://github.com/Eacred/eacrd/tree/master/dcrjson) when the package
-is imported.  Although this package was primarily written for dcrwallet, it has
+is imported.  Although this package was primarily written for eacrwallet, it has
 intentionally been designed so it can be used as a standalone package for any
-projects needing to marshal to and from dcrwallet JSON-RPC requests and
+projects needing to marshal to and from eacrwallet JSON-RPC requests and
 responses.
 
 Note that although it's possible to use this package directly to implement an

@@ -354,7 +354,7 @@ func Seed(reader *bufio.Reader) (seed []byte, imported bool, err error) {
 // option of using this passphrase if public data encryption is enabled,
 // otherwise a user-specified passphrase will be prompted for.
 func Setup(r *bufio.Reader, insecurePubPass, configPubPass []byte) (privPass, pubPass, seed []byte, imported bool, err error) {
-	// Eacred: no legacy keystore restore is needed (first decred wallet
+	// Eacred: no legacy keystore restore is needed (first eacred wallet
 	// version did not use the legacy keystore from earlier versions of
 	// btcwallet).
 

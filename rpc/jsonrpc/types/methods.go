@@ -1370,7 +1370,7 @@ func init() {
 		dcrjson.MustRegister(Method(register[i].method), register[i].cmd, 0)
 	}
 
-	// dcrd methods also implemented by dcrwallet
+	// dcrd methods also implemented by eacrwallet
 	register = []registeredMethod{
 		{"authenticate", (*dcrdtypes.AuthenticateCmd)(nil)},
 		{"getbestblock", (*dcrdtypes.GetBestBlockCmd)(nil)},

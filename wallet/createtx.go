@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Eacred/cspp/v2"
+	"github.com/Eacred/cspp"
 	"github.com/Eacred/cspp/coinjoin"
 	"github.com/Eacred/eacrd/blockchain/stake"
 	blockchain "github.com/Eacred/eacrd/blockchain/standalone"

@@ -1,4 +1,4 @@
-// Package rpctest contains tests for dcrwallet's RPC server and a harness used
+// Package rpctest contains tests for eacrwallet's RPC server and a harness used
 // to facilitate the tests by setting up a temporary Simnet node and wallet. The
 // RPC client implementation in dcrrpcclient is used exclusively to test the RPC
 // server. A single test function, TestMain, is executed by go test, and is

@@ -16,7 +16,7 @@ import (
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/dcrjson"
 	"github.com/Eacred/eacrd/dcrutil"
-	dcrrpcclient "github.com/Eacred/eacrd/rpcclient/v6"
+	dcrrpcclient "github.com/Eacred/eacrd/rpcclient"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/eacrwallet/wallet/txauthor"
@@ -26,7 +26,7 @@ import (
 )
 
 var (
-	walletDataDirectory = dcrutil.AppDataDir("dcrwallet", false)
+	walletDataDirectory = dcrutil.AppDataDir("eacrwallet", false)
 	newlineBytes        = []byte{'\n'}
 )
 
@@ -42,8 +42,8 @@ func errContext(err error, context string) error {
 
 // Flags.
 var opts = struct {
-	TestNet               bool    `long:"testnet" description:"Use the test decred network"`
-	SimNet                bool    `long:"simnet" description:"Use the simulation decred network"`
+	TestNet               bool    `long:"testnet" description:"Use the test eacred network"`
+	SimNet                bool    `long:"simnet" description:"Use the simulation eacred network"`
 	RPCConnect            string  `short:"c" long:"connect" description:"Hostname[:port] of wallet RPC server"`
 	RPCUsername           string  `short:"u" long:"rpcuser" description:"Wallet RPC username"`
 	RPCPassword           string  `short:"P" long:"rpcpass" description:"Wallet RPC password"`
@@ -119,7 +119,7 @@ func init() {
 	}
 
 	if opts.TestNet && opts.SimNet {
-		fatalf("Multiple decred networks may not be used simultaneously")
+		fatalf("Multiple eacred networks may not be used simultaneously")
 	}
 	var activeNet = &chaincfg.MainNetParams
 	if opts.TestNet {

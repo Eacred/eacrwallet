@@ -24,11 +24,11 @@ import (
 	"github.com/Eacred/eacrwallet/internal/rpc/rpcserver"
 	"github.com/Eacred/eacrd/addrmgr"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/eacrwallet/chain"
+	"github.com/Eacred/eacrwallet/chain/v3"
 	"github.com/Eacred/eacrwallet/errors"
 	"github.com/Eacred/eacrwallet/p2p"
-	"github.com/Eacred/eacrwallet/spv"
-	"github.com/Eacred/eacrwallet/ticketbuyer"
+	"github.com/Eacred/eacrwallet/spv/v3"
+	"github.com/Eacred/eacrwallet/ticketbuyer/v4"
 	"github.com/Eacred/eacrwallet/version"
 	"github.com/Eacred/eacrwallet/wallet"
 )
@@ -496,15 +496,15 @@ func spvLoop(ctx context.Context, w *wallet.Wallet) {
 func rpcSyncLoop(ctx context.Context, w *wallet.Wallet) {
 	certs := readCAFile()
 	dial := cfg.dial
-	if cfg.NoEcrdProxy {
+	if cfg.NoDcrdProxy {
 		dial = new(net.Dialer).DialContext
 	}
 	for {
 		syncer := chain.NewSyncer(w, &chain.RPCOptions{
 			Address:     cfg.RPCConnect,
 			DefaultPort: activeNet.JSONRPCClientPort,
-			User:        cfg.EcrdUsername,
-			Pass:        cfg.EcrdPassword,
+			User:        cfg.DcrdUsername,
+			Pass:        cfg.DcrdPassword,
 			Dial:        dial,
 			CA:          certs,
 			Insecure:    cfg.DisableClientTLS,

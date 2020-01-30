@@ -42,7 +42,7 @@ func MerkleRoots(block *wire.MsgBlock) error {
 // DCP0005MerkleRoot recreates the combined regular and stake transaction merkle
 // root and compares it against the merkle root in the block header.
 //
-// DCP0005 (https://github.com/Eacred/dcps/blob/master/dcp-0005/dcp-0005.mediawiki)
+// DCP0005 (https://github.com/eacred/dcps/blob/master/dcp-0005/dcp-0005.mediawiki)
 // describes (among other changes) the hard forking change which combined the
 // individual regular and stake merkle roots into a single root.
 func DCP0005MerkleRoot(block *wire.MsgBlock) error {

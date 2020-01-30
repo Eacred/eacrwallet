@@ -86,7 +86,7 @@ type handler struct {
 
 // jsonAuthFail sends a message back to the client if the http auth is rejected.
 func jsonAuthFail(w http.ResponseWriter) {
-	w.Header().Add("WWW-Authenticate", `Basic realm="dcrwallet RPC"`)
+	w.Header().Add("WWW-Authenticate", `Basic realm="eacrwallet RPC"`)
 	http.Error(w, "401 Unauthorized.", http.StatusUnauthorized)
 }
 
@@ -131,8 +131,8 @@ func NewServer(opts *Options, activeNet *chaincfg.Params, walletLoader *loader.L
 				return
 			}
 			server.wg.Add(1)
+			defer server.wg.Done()
 			server.postClientRPC(w, r)
-			server.wg.Done()
 		}))
 
 	serveMux.Handle("/ws", throttledFn(opts.MaxWebsocketClients,
@@ -196,10 +196,10 @@ func httpBasicAuth(username, password string) []byte {
 func (s *Server) serve(lis net.Listener) {
 	s.wg.Add(1)
 	go func() {
+		defer s.wg.Done()
 		log.Infof("Listening on %s", lis.Addr())
 		err := s.httpServer.Serve(lis)
 		log.Tracef("Finished serving RPC: %v", err)
-		s.wg.Done()
 	}()
 }
 
@@ -232,7 +232,7 @@ func (s *Server) Stop() {
 }
 
 // handlerClosure creates a closure function for handling requests of the given
-// method.  This may be a request that is handled directly by dcrwallet, or
+// method.  This may be a request that is handled directly by eacrwallet, or
 // a chain server request that is handled by passing the request down to dcrd.
 //
 // NOTE: These handlers do not handle special cases, such as the authenticate
@@ -412,7 +412,7 @@ out:
 			case "stop":
 				log.Infof("RPC method stop invoked by %s", remoteAddr(ctx))
 				resp := makeResponse(req.ID,
-					"dcrwallet stopping.", nil)
+					"eacrwallet stopping.", nil)
 				mresp, err := json.Marshal(resp)
 				// Expected to never fail.
 				if err != nil {
@@ -432,6 +432,7 @@ out:
 				wsc.wg.Add(1)
 				go func() {
 					defer task.End()
+					defer wsc.wg.Done()
 					resp, jsonErr := f()
 					mresp, err := dcrjson.MarshalResponse(req.Jsonrpc, req.ID, resp, jsonErr)
 					if err != nil {
@@ -440,7 +441,6 @@ out:
 					} else {
 						_ = wsc.send(mresp)
 					}
-					wsc.wg.Done()
 				}()
 			}
 
@@ -456,6 +456,7 @@ out:
 }
 
 func (s *Server) websocketClientSend(ctx context.Context, wsc *websocketClient) {
+	defer s.wg.Done()
 	const deadline time.Duration = 2 * time.Second
 out:
 	for {
@@ -484,7 +485,6 @@ out:
 	}
 	close(wsc.quit)
 	log.Infof("Disconnected websocket client %s", remoteAddr(ctx))
-	s.wg.Done()
 }
 
 // websocketClientRPC starts the goroutines to serve JSON-RPC requests over a
@@ -569,7 +569,7 @@ func (s *Server) postClientRPC(w http.ResponseWriter, r *http.Request) {
 	case "stop":
 		log.Infof("RPC method stop invoked by %s", r.RemoteAddr)
 		stop = true
-		res = "dcrwallet stopping"
+		res = "eacrwallet stopping"
 	default:
 		res, jsonErr = s.handlerClosure(ctx, &req)()
 	}

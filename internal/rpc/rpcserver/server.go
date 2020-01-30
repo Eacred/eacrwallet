@@ -42,13 +42,13 @@ import (
 	"github.com/Eacred/eacrd/hdkeychain"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/eacrwallet/chain"
+	"github.com/Eacred/eacrwallet/chain/v3"
 	"github.com/Eacred/eacrwallet/errors"
 	"github.com/Eacred/eacrwallet/p2p"
 	"github.com/Eacred/eacrwallet/rpc/client/dcrd"
 	pb "github.com/Eacred/eacrwallet/rpc/walletrpc"
-	"github.com/Eacred/eacrwallet/spv"
-	"github.com/Eacred/eacrwallet/ticketbuyer"
+	"github.com/Eacred/eacrwallet/spv/v3"
+	"github.com/Eacred/eacrwallet/ticketbuyer/v4"
 	"github.com/Eacred/eacrwallet/wallet"
 	"github.com/Eacred/eacrwallet/wallet/txauthor"
 	"github.com/Eacred/eacrwallet/wallet/txrules"
@@ -2195,6 +2195,7 @@ func (t *ticketbuyerV2Server) RunTicketBuyer(req *pb.RunTicketBuyerRequest, svr 
 	tb.AccessConfig(func(c *ticketbuyer.Config) {
 		c.BuyTickets = true
 		c.Account = req.Account
+		c.ChangeAccount = req.Account
 		c.VotingAccount = req.VotingAccount
 		c.Maintain = dcrutil.Amount(req.BalanceToMaintain)
 		c.VotingAddr = votingAddress

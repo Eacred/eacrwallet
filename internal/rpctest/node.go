@@ -17,7 +17,7 @@ import (
 	"time"
 
 	"github.com/Eacred/eacrd/certgen"
-	rpc "github.com/Eacred/eacrd/rpcclient/v6"
+	rpc "github.com/Eacred/eacrd/rpcclient"
 	"github.com/Eacred/eacrd/wire"
 )
 

@@ -1,4 +1,4 @@
-// Copyright (c) 2016 The decred developers
+// Copyright (c) 2016 The eacred developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 package rpctest
@@ -21,7 +21,7 @@ import (
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/dcrjson"
 	"github.com/Eacred/eacrd/dcrutil"
-	dcrrpcclient "github.com/Eacred/eacrd/rpcclient/v6"
+	dcrrpcclient "github.com/Eacred/eacrd/rpcclient"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/eacrwallet/rpc/jsonrpc/types"

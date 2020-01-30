@@ -1,20 +1,20 @@
-dcrwallet
+eacrwallet
 =========
 
-dcrwallet is a daemon handling Eacred wallet functionality.  All interaction
+eacrwallet is a daemon handling Eacred wallet functionality.  All interaction
 with the wallet is performed over RPC.
 
 Public and private keys are derived using the hierarchical
 deterministic format described by
 [BIP0032](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki).
 Unencrypted private keys are not supported and are never written to
-disk.  dcrwallet uses the
+disk.  eacrwallet uses the
 `m/44'/<coin type>'/<account>'/<branch>/<address index>`
 HD path for all derived addresses, as described by
 [BIP0044](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
 
 Due to the sensitive nature of public data in a BIP0032 wallet,
-dcrwallet provides the option of encrypting not just private keys, but
+eacrwallet provides the option of encrypting not just private keys, but
 public data as well.  This is intended to thwart privacy risks where a
 wallet file is compromised without exposing all current and future
 addresses (public keys) managed by the wallet. While access to this
@@ -23,7 +23,7 @@ does mean they could track all transactions involving your addresses
 and therefore know your exact balance.  In a future release, public data
 encryption will extend to transactions as well.
 
-dcrwallet provides two modes of operation to connect to the Eacred
+eacrwallet provides two modes of operation to connect to the Eacred
 network.  The first (and default) is to communicate with a single
 trusted `dcrd` instance using JSON-RPC.  The second is a
 privacy-preserving Simplified Payment Verification (SPV) mode (enabled
@@ -59,7 +59,7 @@ Wallet clients interact with the wallet using one of two RPC servers:
 
   2. A gRPC server
 
-     The gRPC server uses a new API built for dcrwallet, but the API is not
+     The gRPC server uses a new API built for eacrwallet, but the API is not
      stabilized.  This server is enabled by default and may be disabled with
      the config option `--nogrpc`.  If you don't mind applications breaking
      due to API changes, don't want to deal with issues of the JSON-RPC API, or
@@ -72,7 +72,7 @@ Wallet clients interact with the wallet using one of two RPC servers:
 
 Binary releases are provided for common operating systems and architectures:
 
-https://github.com/Eacred/decred-binaries/releases
+https://github.com/eacred/eacred-binaries/releases
 
 ### Build from source (all platforms)
 
@@ -89,7 +89,7 @@ root directory.  Some notes:
 * Set the `GO111MODULE=on` environment variable if building from within
   `GOPATH`.
 
-* The `dcrwallet` executable will be installed to `$GOPATH/bin`.  `GOPATH`
+* The `eacrwallet` executable will be installed to `$GOPATH/bin`.  `GOPATH`
   defaults to `$HOME/go` (or `%USERPROFILE%\go` on Windows) if unset.
 
 ## Docker
@@ -97,7 +97,7 @@ root directory.  Some notes:
 All tests and linters may be run in a docker container using the script
 `run_tests.sh`.  This script defaults to using the current supported version of
 go.  You can run it with the major version of go you would like to use as the
-only argument to test a previous on a previous version of go (generally decred
+only argument to test a previous on a previous version of go (generally eacred
 supports the current version of go and the previous one).
 
 ```
@@ -112,7 +112,7 @@ To run the tests locally without docker:
 
 ## Getting Started
 
-The following instructions detail how to get started with dcrwallet connecting
+The following instructions detail how to get started with eacrwallet connecting
 to a localhost dcrd.  Commands should be run in `cmd.exe` or PowerShell on
 Windows, or any terminal emulator on *nix.
 
@@ -125,33 +125,33 @@ dcrd -u rpcuser -P rpcpass
 - Run the following command to create a wallet:
 
 ```
-dcrwallet -u rpcuser -P rpcpass --create
+eacrwallet -u rpcuser -P rpcpass --create
 ```
 
-- Run the following command to start dcrwallet:
+- Run the following command to start eacrwallet:
 
 ```
-dcrwallet -u rpcuser -P rpcpass
+eacrwallet -u rpcuser -P rpcpass
 ```
 
 If everything appears to be working, it is recommended at this point to
-copy the sample dcrd and dcrwallet configurations and update with your
+copy the sample dcrd and eacrwallet configurations and update with your
 RPC username and password.
 
 PowerShell (Installed from source):
 ```
-PS> cp $env:GOPATH\src\github.com\decred\dcrd\sample-dcrd.conf $env:LOCALAPPDATA\Ecrd\dcrd.conf
-PS> cp $env:GOPATH\src\github.com\decred\dcrwallet\sample-dcrwallet.conf $env:LOCALAPPDATA\Dcrwallet\dcrwallet.conf
-PS> $editor $env:LOCALAPPDATA\Ecrd\dcrd.conf
-PS> $editor $env:LOCALAPPDATA\Dcrwallet\dcrwallet.conf
+PS> cp $env:GOPATH\src\github.com\eacred\dcrd\sample-dcrd.conf $env:LOCALAPPDATA\Dcrd\dcrd.conf
+PS> cp $env:GOPATH\src\github.com\eacred\eacrwallet\sample-eacrwallet.conf $env:LOCALAPPDATA\Dcrwallet\eacrwallet.conf
+PS> $editor $env:LOCALAPPDATA\Dcrd\dcrd.conf
+PS> $editor $env:LOCALAPPDATA\Dcrwallet\eacrwallet.conf
 ```
 
 Linux/BSD/POSIX (Installed from source):
 ```bash
 $ cp $GOPATH/src/github.com/Eacred/eacrd/sample-dcrd.conf ~/.dcrd/dcrd.conf
-$ cp $GOPATH/src/github.com/Eacred/eacrwallet/sample-dcrwallet.conf ~/.dcrwallet/dcrwallet.conf
+$ cp $GOPATH/src/github.com/Eacred/eacrwallet/sample-eacrwallet.conf ~/.eacrwallet/eacrwallet.conf
 $ $EDITOR ~/.dcrd/dcrd.conf
-$ $EDITOR ~/.dcrwallet/dcrwallet.conf
+$ $EDITOR ~/.eacrwallet/eacrwallet.conf
 ```
 
 ## Issue Tracker
@@ -161,4 +161,4 @@ is used for this project.
 
 ## License
 
-dcrwallet is licensed under the liberal ISC License.
+eacrwallet is licensed under the liberal ISC License.

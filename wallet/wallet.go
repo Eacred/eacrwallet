@@ -3708,7 +3708,7 @@ type AccountTotalReceivedResult struct {
 }
 
 // TotalReceivedForAccounts iterates through a wallet's transaction history,
-// returning the total amount of decred received for all accounts.
+// returning the total amount of eacred received for all accounts.
 func (w *Wallet) TotalReceivedForAccounts(ctx context.Context, minConf int32) ([]AccountTotalReceivedResult, error) {
 	const op errors.Op = "wallet.TotalReceivedForAccounts"
 	var results []AccountTotalReceivedResult
@@ -3777,7 +3777,7 @@ func (w *Wallet) TotalReceivedForAccounts(ctx context.Context, minConf int32) ([
 }
 
 // TotalReceivedForAddr iterates through a wallet's transaction history,
-// returning the total amount of decred received for a single wallet
+// returning the total amount of eacred received for a single wallet
 // address.
 func (w *Wallet) TotalReceivedForAddr(ctx context.Context, addr dcrutil.Address, minConf int32) (dcrutil.Amount, error) {
 	const op errors.Op = "wallet.TotalReceivedForAddr"

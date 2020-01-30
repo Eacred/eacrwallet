@@ -50,10 +50,10 @@ func TestWalletSvrWsNtfns(t *testing.T) {
 				return dcrjson.NewCmd("dcrdconnected", true)
 			},
 			staticNtfn: func() interface{} {
-				return NewEcrdConnectedNtfn(true)
+				return NewDcrdConnectedNtfn(true)
 			},
 			marshalled: `{"jsonrpc":"1.0","method":"dcrdconnected","params":[true],"id":null}`,
-			unmarshalled: &EcrdConnectedNtfn{
+			unmarshalled: &DcrdConnectedNtfn{
 				Connected: true,
 			},
 		},

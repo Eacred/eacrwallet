@@ -10,7 +10,7 @@ import (
 	"crypto/tls"
 	"net"
 
-	"github.com/Eacred/cspp/v2"
+	"github.com/Eacred/cspp"
 	"github.com/Eacred/cspp/coinjoin"
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/wire"
