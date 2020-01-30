@@ -11,7 +11,7 @@ import (
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/gcs"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
+	"github.com/Eacred/eacrwallet/errors"
 )
 
 // Peer provides wallets with a subset of Eacred network functionality available

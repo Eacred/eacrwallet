@@ -15,10 +15,10 @@ import (
 	"github.com/Eacred/eacrd/hdkeychain"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/internal/compat"
-	"github.com/Eacred/ecrwallet/wallet/internal/snacl"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/internal/compat"
+	"github.com/Eacred/eacrwallet/wallet/internal/snacl"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // Note: all manager functions always use the latest version of the database.

@@ -14,8 +14,8 @@ import (
 	"github.com/Eacred/eacrd/dcrec"
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // sstxRecord is the structure for a stored SStx.

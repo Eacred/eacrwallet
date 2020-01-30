@@ -21,10 +21,10 @@ import (
 	"github.com/Eacred/eacrd/gcs/blockcf"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/internal/txsizes"
-	"github.com/Eacred/ecrwallet/wallet/txauthor"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/internal/txsizes"
+	"github.com/Eacred/eacrwallet/wallet/txauthor"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 	"golang.org/x/crypto/ripemd160"
 )
 

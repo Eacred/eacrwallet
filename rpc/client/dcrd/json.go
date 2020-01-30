@@ -16,7 +16,7 @@ import (
 	"github.com/Eacred/eacrd/gcs"
 	"github.com/Eacred/eacrd/gcs/blockcf"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
+	"github.com/Eacred/eacrwallet/errors"
 )
 
 type deserializer interface {

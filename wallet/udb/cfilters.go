@@ -8,7 +8,7 @@ import (
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/gcs"
 	"github.com/Eacred/eacrd/gcs/blockcf"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // CFilter returns the saved regular compact filter for a block.

@@ -149,14 +149,14 @@ PS> $editor $env:LOCALAPPDATA\Dcrwallet\dcrwallet.conf
 Linux/BSD/POSIX (Installed from source):
 ```bash
 $ cp $GOPATH/src/github.com/Eacred/eacrd/sample-dcrd.conf ~/.dcrd/dcrd.conf
-$ cp $GOPATH/src/github.com/Eacred/ecrwallet/sample-dcrwallet.conf ~/.dcrwallet/dcrwallet.conf
+$ cp $GOPATH/src/github.com/Eacred/eacrwallet/sample-dcrwallet.conf ~/.dcrwallet/dcrwallet.conf
 $ $EDITOR ~/.dcrd/dcrd.conf
 $ $EDITOR ~/.dcrwallet/dcrwallet.conf
 ```
 
 ## Issue Tracker
 
-The [integrated github issue tracker](https://github.com/Eacred/ecrwallet/issues)
+The [integrated github issue tracker](https://github.com/Eacred/eacrwallet/issues)
 is used for this project.
 
 ## License

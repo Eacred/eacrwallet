@@ -52,7 +52,7 @@ import (
 	"fmt"
 	"path/filepath"
 
-	pb "github.com/Eacred/ecrwallet/rpc/walletrpc"
+	pb "github.com/Eacred/eacrwallet/rpc/walletrpc"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
@@ -394,7 +394,7 @@ pip install grpcio
 Generate Python stubs from the `.proto`:
 
 ```bash
-$ protoc -I /path/to/Eacred/ecrwallet/rpc --python_out=. --grpc_out=. \
+$ protoc -I /path/to/Eacred/eacrwallet/rpc --python_out=. --grpc_out=. \
   --plugin=protoc-gen-grpc=$(which grpc_python_plugin) \
   /path/to/dcrwallet/rpc/api.proto
 ```

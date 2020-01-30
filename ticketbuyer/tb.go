@@ -12,8 +12,8 @@ import (
 
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet"
 )
 
 const minconf = 1

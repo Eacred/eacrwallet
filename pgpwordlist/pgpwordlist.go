@@ -19,7 +19,7 @@ package pgpwordlist
 import (
 	"strings"
 
-	"github.com/Eacred/ecrwallet/errors"
+	"github.com/Eacred/eacrwallet/errors"
 )
 
 // ByteToMnemonic returns the PGP word list encoding of b when found at index.

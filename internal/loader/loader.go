@@ -13,9 +13,9 @@ import (
 
 	"github.com/Eacred/eacrd/chaincfg"
 	"github.com/Eacred/eacrd/dcrutil"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet"
-	_ "github.com/Eacred/ecrwallet/wallet/drivers/bdb" // driver loaded during init
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet"
+	_ "github.com/Eacred/eacrwallet/wallet/drivers/bdb" // driver loaded during init
 )
 
 const (

@@ -24,7 +24,7 @@ import (
 	dcrrpcclient "github.com/Eacred/eacrd/rpcclient/v6"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/rpc/jsonrpc/types"
+	"github.com/Eacred/eacrwallet/rpc/jsonrpc/types"
 )
 
 type rpcTestCase func(r *Harness, t *testing.T)

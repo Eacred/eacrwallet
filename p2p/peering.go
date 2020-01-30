@@ -20,9 +20,9 @@ import (
 	"github.com/Eacred/eacrd/gcs"
 	"github.com/Eacred/eacrd/gcs/blockcf"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/lru"
-	"github.com/Eacred/ecrwallet/version"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/lru"
+	"github.com/Eacred/eacrwallet/version"
 	"golang.org/x/sync/errgroup"
 )
 

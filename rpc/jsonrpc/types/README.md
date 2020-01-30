@@ -1,9 +1,9 @@
 jsonrpc/types
 =============
 
-[![Build Status](https://github.com/Eacred/ecrwallet/workflows/Build%20and%20Test/badge.svg)](https://github.com/Eacred/ecrwallet/actions)
+[![Build Status](https://github.com/Eacred/eacrwallet/workflows/Build%20and%20Test/badge.svg)](https://github.com/Eacred/eacrwallet/actions)
 [![ISC License](https://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/Eacred/ecrwallet/rpc/jsonrpc/types)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/Eacred/eacrwallet/rpc/jsonrpc/types)
 
 Package types implements concrete types for marshalling to and from the
 dcrwallet JSON-RPC API.  A comprehensive suite of tests is provided to ensure
@@ -28,7 +28,7 @@ ints, etc) to higher-level types with many nice and useful properties.
 ## Installation and Updating
 
 ```bash
-$ go get -u github.com/Eacred/ecrwallet/rpc/jsonrpc/types
+$ go get -u github.com/Eacred/eacrwallet/rpc/jsonrpc/types
 ```
 
 ## License

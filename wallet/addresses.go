@@ -14,11 +14,11 @@ import (
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/hdkeychain"
 	"github.com/Eacred/eacrd/txscript"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/internal/compat"
-	"github.com/Eacred/ecrwallet/wallet/internal/txsizes"
-	"github.com/Eacred/ecrwallet/wallet/udb"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/internal/compat"
+	"github.com/Eacred/eacrwallet/wallet/internal/txsizes"
+	"github.com/Eacred/eacrwallet/wallet/udb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // V0Scripter is a type (usually addresses) which create or encode to version 0

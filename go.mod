@@ -1,4 +1,4 @@
-module github.com/Eacred/ecrwallet
+module github.com/Eacred/eacrwallet
 
 go 1.12
 

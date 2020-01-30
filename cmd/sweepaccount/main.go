@@ -19,8 +19,8 @@ import (
 	dcrrpcclient "github.com/Eacred/eacrd/rpcclient/v6"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/wallet/txauthor"
-	"github.com/Eacred/ecrwallet/wallet/txrules"
+	"github.com/Eacred/eacrwallet/wallet/txauthor"
+	"github.com/Eacred/eacrwallet/wallet/txrules"
 	"github.com/jessevdk/go-flags"
 	"golang.org/x/crypto/ssh/terminal"
 )

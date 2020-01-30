@@ -20,7 +20,7 @@ import (
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/dcrutil"
 	rpc "github.com/Eacred/eacrd/rpcclient/v6"
-	"github.com/Eacred/ecrwallet/errors"
+	"github.com/Eacred/eacrwallet/errors"
 )
 
 var (

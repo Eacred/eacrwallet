@@ -13,7 +13,7 @@ import (
 	"io"
 	"runtime/trace"
 
-	"github.com/Eacred/ecrwallet/errors"
+	"github.com/Eacred/eacrwallet/errors"
 )
 
 // ReadTx represents a database transaction that can only be used for reads.  If

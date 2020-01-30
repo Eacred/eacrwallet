@@ -14,8 +14,8 @@ import (
 	"github.com/Eacred/eacrd/chaincfg"
 	"github.com/Eacred/eacrd/gcs"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // SidechainForest provides in-memory management of sidechain and orphan blocks.

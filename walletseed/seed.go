@@ -11,8 +11,8 @@ import (
 	"strings"
 
 	"github.com/Eacred/eacrd/hdkeychain"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/pgpwordlist"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/pgpwordlist"
 )
 
 // GenerateRandomSeed returns a new seed created from a cryptographically-secure

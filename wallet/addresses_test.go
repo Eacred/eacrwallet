@@ -15,7 +15,7 @@ import (
 
 	"github.com/Eacred/eacrd/chaincfg"
 	"github.com/Eacred/eacrd/dcrutil"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // expectedAddr is used to house the expected return values from a managed

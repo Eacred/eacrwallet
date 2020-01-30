@@ -15,10 +15,10 @@ import (
 	"github.com/Eacred/eacrd/gcs/blockcf"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/p2p"
-	"github.com/Eacred/ecrwallet/validate"
-	"github.com/Eacred/ecrwallet/wallet"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/p2p"
+	"github.com/Eacred/eacrwallet/validate"
+	"github.com/Eacred/eacrwallet/wallet"
 )
 
 var _ wallet.NetworkBackend = (*Syncer)(nil)

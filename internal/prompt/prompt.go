@@ -15,8 +15,8 @@ import (
 	"unicode"
 
 	"github.com/Eacred/eacrd/hdkeychain"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/walletseed"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/walletseed"
 	"golang.org/x/crypto/ssh/terminal"
 )
 

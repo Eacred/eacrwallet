@@ -16,10 +16,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Eacred/ecrwallet/internal/loader"
-	"github.com/Eacred/ecrwallet/internal/rpc/jsonrpc"
-	"github.com/Eacred/ecrwallet/internal/rpc/rpcserver"
-	"github.com/Eacred/ecrwallet/errors"
+	"github.com/Eacred/eacrwallet/internal/loader"
+	"github.com/Eacred/eacrwallet/internal/rpc/jsonrpc"
+	"github.com/Eacred/eacrwallet/internal/rpc/rpcserver"
+	"github.com/Eacred/eacrwallet/errors"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"

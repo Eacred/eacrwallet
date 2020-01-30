@@ -13,7 +13,7 @@ import (
 	"os"
 
 	"github.com/Eacred/eacrd/chaincfg"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 var (

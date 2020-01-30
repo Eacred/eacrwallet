@@ -17,10 +17,10 @@ import (
 	"github.com/Eacred/eacrd/hdkeychain"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/rpc/client/dcrd"
-	"github.com/Eacred/ecrwallet/wallet/udb"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/rpc/client/dcrd"
+	"github.com/Eacred/eacrwallet/wallet/udb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // TODO: It would be good to send errors during notification creation to the rpc

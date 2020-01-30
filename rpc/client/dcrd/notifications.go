@@ -9,7 +9,7 @@ import (
 
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
+	"github.com/Eacred/eacrwallet/errors"
 )
 
 func unmarshalArray(j json.RawMessage, params ...interface{}) error {

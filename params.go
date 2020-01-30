@@ -5,6 +5,6 @@
 
 package main
 
-import "github.com/Eacred/ecrwallet/internal/netparams"
+import "github.com/Eacred/eacrwallet/internal/netparams"
 
 var activeNet = &netparams.MainNetParams

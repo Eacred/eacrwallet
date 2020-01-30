@@ -13,8 +13,8 @@ interface. The functions are only exported while the tests are being run.
 package udb
 
 import (
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/internal/snacl"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/internal/snacl"
 )
 
 // TstLatestMgrVersion makes the unexported latestMgrVersion variable available

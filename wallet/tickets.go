@@ -14,10 +14,10 @@ import (
 	dcrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/rpc/client/dcrd"
-	"github.com/Eacred/ecrwallet/wallet/udb"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/rpc/client/dcrd"
+	"github.com/Eacred/eacrwallet/wallet/udb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 	"golang.org/x/sync/errgroup"
 )
 

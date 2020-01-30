@@ -16,9 +16,9 @@ import (
 
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/rpc/client/dcrd"
-	"github.com/Eacred/ecrwallet/wallet"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/rpc/client/dcrd"
+	"github.com/Eacred/eacrwallet/wallet"
 	"github.com/jrick/wsrpc/v2"
 	"golang.org/x/sync/errgroup"
 )

@@ -22,8 +22,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // errSubTestFail is used to signal that a sub test returned false.

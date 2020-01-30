@@ -12,7 +12,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/Eacred/ecrwallet/errors"
+	"github.com/Eacred/eacrwallet/errors"
 )
 
 // Messages sent over a pipe are encoded using a simple binary message format:

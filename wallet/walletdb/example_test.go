@@ -14,9 +14,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/Eacred/ecrwallet/errors"
-	_ "github.com/Eacred/ecrwallet/wallet/internal/bdb"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	_ "github.com/Eacred/eacrwallet/wallet/internal/bdb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // This example demonstrates creating a new database.

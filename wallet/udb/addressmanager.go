@@ -16,10 +16,10 @@ import (
 	"github.com/Eacred/eacrd/chaincfg/chainec"
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/hdkeychain"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/internal/compat"
-	"github.com/Eacred/ecrwallet/wallet/internal/snacl"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/internal/compat"
+	"github.com/Eacred/eacrwallet/wallet/internal/snacl"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 	"golang.org/x/crypto/ripemd160"
 )
 

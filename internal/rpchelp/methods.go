@@ -9,7 +9,7 @@ package rpchelp
 
 import (
 	dcrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
-	"github.com/Eacred/ecrwallet/rpc/jsonrpc/types"
+	"github.com/Eacred/eacrwallet/rpc/jsonrpc/types"
 )
 
 // Common return types.

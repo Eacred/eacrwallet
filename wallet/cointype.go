@@ -8,9 +8,9 @@ import (
 	"context"
 
 	"github.com/Eacred/eacrd/hdkeychain"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/udb"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/udb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // UpgradeToSLIP0044CoinType upgrades the wallet from the legacy BIP0044 coin

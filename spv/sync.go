@@ -17,11 +17,11 @@ import (
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/gcs/blockcf"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/lru"
-	"github.com/Eacred/ecrwallet/p2p"
-	"github.com/Eacred/ecrwallet/validate"
-	"github.com/Eacred/ecrwallet/wallet"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/lru"
+	"github.com/Eacred/eacrwallet/p2p"
+	"github.com/Eacred/eacrwallet/validate"
+	"github.com/Eacred/eacrwallet/wallet"
 	"golang.org/x/sync/errgroup"
 )
 

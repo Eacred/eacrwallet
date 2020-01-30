@@ -19,9 +19,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Eacred/ecrwallet/internal/rpchelp"
+	"github.com/Eacred/eacrwallet/internal/rpchelp"
 	"github.com/Eacred/eacrd/dcrjson/v3"
-	"github.com/Eacred/ecrwallet/rpc/jsonrpc/types"
+	"github.com/Eacred/eacrwallet/rpc/jsonrpc/types"
 )
 
 func serverMethods() map[string]struct{} {

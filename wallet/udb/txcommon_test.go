@@ -16,8 +16,8 @@ import (
 	"github.com/Eacred/eacrd/gcs"
 	"github.com/Eacred/eacrd/gcs/blockcf"
 	"github.com/Eacred/eacrd/wire"
-	_ "github.com/Eacred/ecrwallet/wallet/drivers/bdb"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	_ "github.com/Eacred/eacrwallet/wallet/drivers/bdb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 func tempDB(t *testing.T) (db walletdb.DB, teardown func()) {

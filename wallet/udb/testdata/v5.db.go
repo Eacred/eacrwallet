@@ -29,12 +29,12 @@ import (
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/dcrutil"
 	"github.com/Eacred/dcrutil/hdkeychain"
-	_ "github.com/Eacred/ecrwallet/wallet/internal/bdb"
-	"github.com/Eacred/ecrwallet/wallet/internal/txsizes"
-	"github.com/Eacred/ecrwallet/wallet/txrules"
-	"github.com/Eacred/ecrwallet/wallet/udb"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
-	"github.com/Eacred/ecrwallet/walletseed"
+	_ "github.com/Eacred/eacrwallet/wallet/internal/bdb"
+	"github.com/Eacred/eacrwallet/wallet/internal/txsizes"
+	"github.com/Eacred/eacrwallet/wallet/txrules"
+	"github.com/Eacred/eacrwallet/wallet/udb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/walletseed"
 )
 
 const dbname = "v5.db"

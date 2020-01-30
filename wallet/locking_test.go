@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Eacred/ecrwallet/errors"
+	"github.com/Eacred/eacrwallet/errors"
 )
 
 var testPrivPass = []byte("private")

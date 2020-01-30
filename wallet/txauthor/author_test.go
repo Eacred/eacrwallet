@@ -10,12 +10,12 @@ import (
 
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/txauthor"
-	. "github.com/Eacred/ecrwallet/wallet/txauthor"
-	"github.com/Eacred/ecrwallet/wallet/txrules"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/txauthor"
+	. "github.com/Eacred/eacrwallet/wallet/txauthor"
+	"github.com/Eacred/eacrwallet/wallet/txrules"
 
-	"github.com/Eacred/ecrwallet/wallet/internal/txsizes"
+	"github.com/Eacred/eacrwallet/wallet/internal/txsizes"
 )
 
 type AuthorTestChangeSource struct{}

@@ -9,7 +9,7 @@ import (
 	"fmt"
 
 	"github.com/Eacred/eacrd/dcrjson/v3"
-	"github.com/Eacred/ecrwallet/errors"
+	"github.com/Eacred/eacrwallet/errors"
 )
 
 func convertError(err error) *dcrjson.RPCError {

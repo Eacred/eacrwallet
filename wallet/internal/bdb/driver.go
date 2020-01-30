@@ -8,8 +8,8 @@ package bdb
 import (
 	"fmt"
 
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 const (

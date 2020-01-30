@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/Eacred/eacrd/certgen"
-	"github.com/Eacred/ecrwallet/errors"
+	"github.com/Eacred/eacrwallet/errors"
 )
 
 const (

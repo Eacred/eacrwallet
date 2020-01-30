@@ -19,18 +19,18 @@ import (
 	"runtime/pprof"
 	"time"
 
-	ldr "github.com/Eacred/ecrwallet/internal/loader"
-	"github.com/Eacred/ecrwallet/internal/prompt"
-	"github.com/Eacred/ecrwallet/internal/rpc/rpcserver"
+	ldr "github.com/Eacred/eacrwallet/internal/loader"
+	"github.com/Eacred/eacrwallet/internal/prompt"
+	"github.com/Eacred/eacrwallet/internal/rpc/rpcserver"
 	"github.com/Eacred/eacrd/addrmgr"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/chain"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/p2p"
-	"github.com/Eacred/ecrwallet/spv"
-	"github.com/Eacred/ecrwallet/ticketbuyer"
-	"github.com/Eacred/ecrwallet/version"
-	"github.com/Eacred/ecrwallet/wallet"
+	"github.com/Eacred/eacrwallet/chain"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/p2p"
+	"github.com/Eacred/eacrwallet/spv"
+	"github.com/Eacred/eacrwallet/ticketbuyer"
+	"github.com/Eacred/eacrwallet/version"
+	"github.com/Eacred/eacrwallet/wallet"
 )
 
 func init() {

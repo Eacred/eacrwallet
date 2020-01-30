@@ -5,7 +5,7 @@ import (
 
 	"github.com/Eacred/eacrd/chaincfg"
 	"github.com/Eacred/eacrd/dcrutil"
-	. "github.com/Eacred/ecrwallet/wallet/txrules"
+	. "github.com/Eacred/eacrwallet/wallet/txrules"
 )
 
 func TestStakePoolTicketFee(t *testing.T) {

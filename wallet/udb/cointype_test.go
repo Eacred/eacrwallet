@@ -11,9 +11,9 @@ import (
 	"github.com/Eacred/eacrd/chaincfg"
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/hdkeychain"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/internal/compat"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/internal/compat"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 func TestCoinTypes(t *testing.T) {

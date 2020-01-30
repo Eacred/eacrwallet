@@ -13,7 +13,7 @@ import (
 
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 func ExampleStore_Rollback(t *testing.T) {

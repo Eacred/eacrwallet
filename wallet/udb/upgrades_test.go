@@ -20,8 +20,8 @@ import (
 	"github.com/Eacred/eacrd/chaincfg"
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/wire"
-	_ "github.com/Eacred/ecrwallet/wallet/drivers/bdb"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	_ "github.com/Eacred/eacrwallet/wallet/drivers/bdb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 var dbUpgradeTests = [...]struct {

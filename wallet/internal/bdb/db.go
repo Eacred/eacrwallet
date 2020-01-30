@@ -9,8 +9,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 	bolt "go.etcd.io/bbolt"
 )
 

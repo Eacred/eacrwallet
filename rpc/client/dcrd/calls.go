@@ -16,7 +16,7 @@ import (
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/gcs"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
+	"github.com/Eacred/eacrwallet/errors"
 	"github.com/jrick/bitset"
 	"github.com/jrick/wsrpc/v2"
 	"golang.org/x/sync/errgroup"

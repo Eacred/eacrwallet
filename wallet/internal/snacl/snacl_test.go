@@ -8,7 +8,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/Eacred/ecrwallet/errors"
+	"github.com/Eacred/eacrwallet/errors"
 )
 
 var (

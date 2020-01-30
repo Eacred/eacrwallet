@@ -10,7 +10,7 @@ import (
 	mathrand "math/rand"
 	"sync"
 
-	"github.com/Eacred/ecrwallet/wallet/txauthor"
+	"github.com/Eacred/eacrwallet/wallet/txauthor"
 )
 
 var shuffleRand *mathrand.Rand

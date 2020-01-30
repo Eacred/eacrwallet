@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Eacred/ecrwallet/internal/rpctest"
+	"github.com/Eacred/eacrwallet/internal/rpctest"
 	"github.com/Eacred/eacrd/chaincfg"
 )
 

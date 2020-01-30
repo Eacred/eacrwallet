@@ -9,11 +9,11 @@
 // Full documentation of the API implemented by this package is maintained in a
 // language-agnostic document:
 //
-//   https://github.com/Eacred/ecrwallet/blob/master/rpc/documentation/api.md
+//   https://github.com/Eacred/eacrwallet/blob/master/rpc/documentation/api.md
 //
 // Any API changes must be performed according to the steps listed here:
 //
-//   https://github.com/Eacred/ecrwallet/blob/master/rpc/documentation/serverchanges.md
+//   https://github.com/Eacred/eacrwallet/blob/master/rpc/documentation/serverchanges.md
 package rpcserver
 
 import (
@@ -30,9 +30,9 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/Eacred/ecrwallet/internal/cfgutil"
-	"github.com/Eacred/ecrwallet/internal/loader"
-	"github.com/Eacred/ecrwallet/internal/netparams"
+	"github.com/Eacred/eacrwallet/internal/cfgutil"
+	"github.com/Eacred/eacrwallet/internal/loader"
+	"github.com/Eacred/eacrwallet/internal/netparams"
 	"github.com/Eacred/eacrd/addrmgr"
 	"github.com/Eacred/eacrd/blockchain/stake"
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
@@ -42,18 +42,18 @@ import (
 	"github.com/Eacred/eacrd/hdkeychain"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/chain"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/p2p"
-	"github.com/Eacred/ecrwallet/rpc/client/dcrd"
-	pb "github.com/Eacred/ecrwallet/rpc/walletrpc"
-	"github.com/Eacred/ecrwallet/spv"
-	"github.com/Eacred/ecrwallet/ticketbuyer"
-	"github.com/Eacred/ecrwallet/wallet"
-	"github.com/Eacred/ecrwallet/wallet/txauthor"
-	"github.com/Eacred/ecrwallet/wallet/txrules"
-	"github.com/Eacred/ecrwallet/wallet/udb"
-	"github.com/Eacred/ecrwallet/walletseed"
+	"github.com/Eacred/eacrwallet/chain"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/p2p"
+	"github.com/Eacred/eacrwallet/rpc/client/dcrd"
+	pb "github.com/Eacred/eacrwallet/rpc/walletrpc"
+	"github.com/Eacred/eacrwallet/spv"
+	"github.com/Eacred/eacrwallet/ticketbuyer"
+	"github.com/Eacred/eacrwallet/wallet"
+	"github.com/Eacred/eacrwallet/wallet/txauthor"
+	"github.com/Eacred/eacrwallet/wallet/txrules"
+	"github.com/Eacred/eacrwallet/wallet/udb"
+	"github.com/Eacred/eacrwallet/walletseed"
 )
 
 // Public API version constants

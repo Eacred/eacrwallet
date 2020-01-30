@@ -9,9 +9,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/Eacred/ecrwallet/errors"
-	_ "github.com/Eacred/ecrwallet/wallet/internal/bdb"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	_ "github.com/Eacred/eacrwallet/wallet/internal/bdb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // dbType is the database type name for this driver.

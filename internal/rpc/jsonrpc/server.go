@@ -20,12 +20,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/Eacred/ecrwallet/internal/loader"
+	"github.com/Eacred/eacrwallet/internal/loader"
 	"github.com/Eacred/eacrd/chaincfg"
 	"github.com/Eacred/eacrd/dcrjson/v3"
 	dcrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/rpc/jsonrpc/types"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/rpc/jsonrpc/types"
 	"github.com/gorilla/websocket"
 )
 

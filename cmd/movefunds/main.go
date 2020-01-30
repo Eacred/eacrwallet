@@ -30,7 +30,7 @@ import (
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/wallet/txauthor"
+	"github.com/Eacred/eacrwallet/wallet/txauthor"
 )
 
 // params is the global representing the chain parameters. It is assigned

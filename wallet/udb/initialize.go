@@ -8,8 +8,8 @@ import (
 	"context"
 	
 	"github.com/Eacred/eacrd/chaincfg"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // Initialize prepares an empty database for usage by initializing all buckets

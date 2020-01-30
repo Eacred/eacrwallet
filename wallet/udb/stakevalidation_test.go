@@ -13,8 +13,8 @@ import (
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/gcs"
 	"github.com/Eacred/eacrd/wire"
-	_ "github.com/Eacred/ecrwallet/wallet/internal/bdb"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	_ "github.com/Eacred/eacrwallet/wallet/internal/bdb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 func insertMainChainHeaders(s *Store, ns walletdb.ReadWriteBucket, addrmgrNs walletdb.ReadBucket,

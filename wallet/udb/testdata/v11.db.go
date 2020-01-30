@@ -52,10 +52,10 @@ import (
 	"github.com/Eacred/eacrd/gcs"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	_ "github.com/Eacred/ecrwallet/wallet/internal/bdb"
-	"github.com/Eacred/ecrwallet/wallet/udb"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	_ "github.com/Eacred/eacrwallet/wallet/internal/bdb"
+	"github.com/Eacred/eacrwallet/wallet/udb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 const dbname = "v11.db"

@@ -14,17 +14,17 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/Eacred/ecrwallet/internal/loader"
-	"github.com/Eacred/ecrwallet/internal/prompt"
+	"github.com/Eacred/eacrwallet/internal/loader"
+	"github.com/Eacred/eacrwallet/internal/prompt"
 	"github.com/Eacred/eacrd/chaincfg"
 	"github.com/Eacred/eacrd/dcrec"
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/hdkeychain"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet"
-	_ "github.com/Eacred/ecrwallet/wallet/drivers/bdb"
-	"github.com/Eacred/ecrwallet/walletseed"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet"
+	_ "github.com/Eacred/eacrwallet/wallet/drivers/bdb"
+	"github.com/Eacred/eacrwallet/walletseed"
 )
 
 // networkDir returns the directory name of a network directory to hold wallet

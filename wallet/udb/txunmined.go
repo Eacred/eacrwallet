@@ -11,8 +11,8 @@ import (
 	"github.com/Eacred/eacrd/blockchain/stake"
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // InsertMemPoolTx inserts a memory pool transaction record.  It also marks

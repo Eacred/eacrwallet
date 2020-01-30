@@ -16,10 +16,10 @@ import (
 
 	"github.com/Eacred/eacrd/chaincfg"
 	"github.com/Eacred/dcrutil/hdkeychain"
-	_ "github.com/Eacred/ecrwallet/wallet/internal/bdb"
-	"github.com/Eacred/ecrwallet/wallet/udb"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
-	"github.com/Eacred/ecrwallet/walletseed"
+	_ "github.com/Eacred/eacrwallet/wallet/internal/bdb"
+	"github.com/Eacred/eacrwallet/wallet/udb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/walletseed"
 )
 
 const dbname = "v3.db"

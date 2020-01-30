@@ -7,8 +7,8 @@ package wallet
 import (
 	"io"
 
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // DB represents an ACID database for a wallet.

@@ -15,11 +15,11 @@ import (
 	"github.com/Eacred/eacrd/gcs/blockcf"
 	hd "github.com/Eacred/eacrd/hdkeychain"
 	"github.com/Eacred/eacrd/wire"
-	"github.com/Eacred/ecrwallet/errors"
-	"github.com/Eacred/ecrwallet/rpc/client/dcrd"
-	"github.com/Eacred/ecrwallet/validate"
-	"github.com/Eacred/ecrwallet/wallet/udb"
-	"github.com/Eacred/ecrwallet/wallet/walletdb"
+	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/rpc/client/dcrd"
+	"github.com/Eacred/eacrwallet/validate"
+	"github.com/Eacred/eacrwallet/wallet/udb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 	"golang.org/x/sync/errgroup"
 )
 
