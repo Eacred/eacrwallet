@@ -7,7 +7,6 @@ require (
 	github.com/Eacred/eacrd v0.0.0-20200130055725-b3821f5745bf
 	github.com/Eacred/go-socks v1.1.1
 	github.com/Eacred/slog v1.0.1
-	github.com/Eacred/eacrwallet/wallet v3.2.1
 	github.com/golang/protobuf v1.3.3
 	github.com/gorilla/websocket v1.4.1
 	github.com/jessevdk/go-flags v1.4.0

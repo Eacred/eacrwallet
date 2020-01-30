@@ -20,6 +20,15 @@ github.com/Eacred/cspp/v2 v2.01/go.mod h1:AluGqqtq580GdsWxH2wbYtCDKi5D5P4sA96waw
 github.com/Eacred/cspp/v2 v2.01/go.mod h1:AluGqqtq580GdsWxH2wbYtCDKi5D5P4sA96waw70D5c=
 github.com/Eacred/cspp/v2 v2.01/go.mod h1:AluGqqtq580GdsWxH2wbYtCDKi5D5P4sA96waw70D5c=
 github.com/Eacred/cspp/v2 v2.01/go.mod h1:KVnB49sueBFCldRa/ivZCaWZbrPNEiXWwxHCf1jTYKI=
+github.com/Eacred/eacrd v0.0.0-20200130055725-b3821f5745bf/go.mod h1:eyc4RdZRTO9z9hnMEdnG1fs9qc88swnAHVQpne6w8gc=
+github.com/Eacred/eacrwallet/wallet v3.2.1 h1:oPm/xauyMJPt4TBkhRWEO+j18FP/fMbtJM74eQR5/bg=
+github.com/Eacred/eacrwallet/wallet v3.2.1/go.mod h1:SJ+++gtMdcUeqMv6iIO3gVGlGJfM+4iY2QSaAakhbUw=
+github.com/Eacred/ecrd/chaincfg/chainhash v1.0.5/go.mod h1:i7J8YxTjTAq3x/1ERZbp2fNtqhqhWzENkFcO9PRDBt8=
+github.com/Eacred/ecrd/crypto/blake256 v1.0.1/go.mod h1:wOA/ZHrOiqLse2DmPGPhFKhTeSp+RY+rruBzLI3fe+Q=
+github.com/Eacred/ecrd/dcrjson/v3 v3.0.3/go.mod h1:WsVk3ojSM4CCETzbT9XHteJxLKGFdFYVyVyoqgvq9zc=
+github.com/Eacred/ecrd/rpc/jsonrpc/types/v2 v2.0.2/go.mod h1:8XL+verDXNEp9sdA0mX6C36AQk1VstsgO5kcAeQHztc=
+github.com/Eacred/ecrd/wire v1.3.2/go.mod h1:CJv9fWPOf8JdaNjL7bPn0X4uDKCMVAOF6oZ0TzQTxxg=
+github.com/Eacred/ecrwallet/rpc/jsonrpc/types v1.4.4/go.mod h1:jWtL5EinZCVimq5EfXc35sZe4JzVCuPDoIW7kzmzLGI=
 github.com/Eacred/go-socks v1.0.0 h1:gd5+vE9LmL+FYiN5cxAMtaAVb791mG8E/+Jo411M/BE=
 github.com/Eacred/go-socks v1.0.0/go.mod h1:In3Ct6PbUZu/VSMVan+nINZ94hjqEMIvkXzUDv++xoI=
 github.com/Eacred/go-socks v1.1.1 h1:YIxpynZ6S8m5grSsw4GOTJnRas9x9sGR8ucb5sxiIA8=
@@ -88,8 +97,6 @@ github.com/decred/dcrwallet/rpc/client/dcrd v1.0.0/go.mod h1:qrJri+p+cn+obQ8nkW5
 github.com/decred/dcrwallet/rpc/jsonrpc/types v1.3.0/go.mod h1:Xvekb43GtfMiRbyIY4ZJ9Uhd9HRIAcnp46f3q2eIExU=
 github.com/decred/dcrwallet/validate v1.1.1/go.mod h1:T++tlVcCOh2oSrEq4r5CKCvmftaQdq9uZwO7jSNYZaw=
 github.com/decred/dcrwallet/wallet v1.3.0 h1:RQ4uHIfbDF0ppyeVDkTr7GapeABCddUUKOSexTN7X1M=
-github.com/Eacred/eacrwallet/wallet v3.2.1 h1:oPm/xauyMJPt4TBkhRWEO+j18FP/fMbtJM74eQR5/bg=
-github.com/Eacred/eacrwallet/wallet v3.2.1/go.mod h1:SJ+++gtMdcUeqMv6iIO3gVGlGJfM+4iY2QSaAakhbUw=
 github.com/decred/go-socks v1.1.0/go.mod h1:sDhHqkZH0X4JjSa02oYOGhcGHYp12FsY1jQ/meV8md0=
 github.com/decred/slog v1.0.0/go.mod h1:zR98rEZHSnbZ4WHZtO0iqmSZjDLKhkXfrPTZQKtAonQ=
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
