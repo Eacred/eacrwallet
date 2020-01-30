@@ -24,7 +24,7 @@ import (
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/chaincfg"
 	"github.com/Eacred/eacrd/dcrec"
-	"github.com/Eacred/eacrd/dcrjson/v3"
+	"github.com/Eacred/eacrd/dcrjson"
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/hdkeychain"
 	dcrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"

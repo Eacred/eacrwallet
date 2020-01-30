@@ -9,7 +9,7 @@
 package types
 
 import (
-	"github.com/Eacred/eacrd/dcrjson/v3"
+	"github.com/Eacred/eacrd/dcrjson"
 	dcrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
 )
 

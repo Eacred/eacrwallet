@@ -8,7 +8,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/decred/dcrwallet/wallet/v3/walletdb"
+	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
 
 // TestDiscoveryCursorPos tests that the account cursor index is not reset

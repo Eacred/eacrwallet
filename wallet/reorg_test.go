@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Eacred/eacrd/blockchain/v2/chaingen"
+	"github.com/Eacred/eacrd/blockchain/chaingen"
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/chaincfg"
 	"github.com/Eacred/eacrd/gcs/blockcf"

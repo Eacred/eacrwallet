@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/Eacred/eacrd/wire"
-	. "github.com/decred/dcrwallet/wallet/v3/txsizes"
+	. "github.com/Eacred/eacrwallet/wallet/txsizes"
 )
 
 const (

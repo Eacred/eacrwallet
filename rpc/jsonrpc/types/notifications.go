@@ -8,7 +8,7 @@
 
 package types
 
-import "github.com/Eacred/eacrd/dcrjson/v3"
+import "github.com/Eacred/eacrd/dcrjson"
 
 const (
 	// AccountBalanceNtfnMethod is the method used for account balance

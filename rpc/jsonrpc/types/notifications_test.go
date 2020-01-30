@@ -12,7 +12,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Eacred/eacrd/dcrjson/v3"
+	"github.com/Eacred/eacrd/dcrjson"
 )
 
 // TestWalletSvrWsNtfns tests all of the chain server websocket-specific

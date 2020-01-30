@@ -22,7 +22,7 @@ import (
 
 	"github.com/Eacred/eacrwallet/internal/loader"
 	"github.com/Eacred/eacrd/chaincfg"
-	"github.com/Eacred/eacrd/dcrjson/v3"
+	"github.com/Eacred/eacrd/dcrjson"
 	dcrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
 	"github.com/Eacred/eacrwallet/errors"
 	"github.com/Eacred/eacrwallet/rpc/jsonrpc/types"

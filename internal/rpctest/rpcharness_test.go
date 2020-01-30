@@ -19,7 +19,7 @@ import (
 	"github.com/Eacred/eacrd/blockchain/stake"
 	"github.com/Eacred/eacrd/chaincfg"
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
-	"github.com/Eacred/eacrd/dcrjson/v3"
+	"github.com/Eacred/eacrd/dcrjson"
 	"github.com/Eacred/eacrd/dcrutil"
 	dcrrpcclient "github.com/Eacred/eacrd/rpcclient/v6"
 	"github.com/Eacred/eacrd/txscript"

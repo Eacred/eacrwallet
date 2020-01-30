@@ -14,7 +14,7 @@ import (
 	"strings"
 
 	"github.com/Eacred/eacrwallet/internal/rpchelp"
-	"github.com/Eacred/eacrd/dcrjson/v3"
+	"github.com/Eacred/eacrd/dcrjson"
 	"github.com/Eacred/eacrwallet/rpc/jsonrpc/types"
 )
 

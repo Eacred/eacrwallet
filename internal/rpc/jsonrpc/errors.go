@@ -8,7 +8,7 @@ package jsonrpc
 import (
 	"fmt"
 
-	"github.com/Eacred/eacrd/dcrjson/v3"
+	"github.com/Eacred/eacrd/dcrjson"
 	"github.com/Eacred/eacrwallet/errors"
 )
 
