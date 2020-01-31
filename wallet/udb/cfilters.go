@@ -12,13 +12,13 @@ import (
 )
 
 // CFilter returns the saved regular compact filter for a block.
-func (s *Store) CFilter(dbtx walletdb.ReadTx, blockHash *chainhash.Hash) (*gcs.Filter, error) {
+func (s *Store) CFilter(dbtx walletdb.ReadTx, blockHash *chainhash.Hash) (*gcs.FilterV1, error) {
 	ns := dbtx.ReadBucket(wtxmgrBucketKey)
 	v, err := fetchRawCFilter(ns, blockHash[:])
 	if err != nil {
 		return nil, err
 	}
-	vc := make([]byte, len(v)) // Copy for FromNBytes which stores passed slice
+	vc := make([]byte, len(v)) // Copy for FromfilterNData which stores passed slice
 	copy(vc, v)
-	return gcs.FromNBytes(blockcf.P, vc)
+	return gcs.FromBytesV1(blockcf.P, vc)
 }

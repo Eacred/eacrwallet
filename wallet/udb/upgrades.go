@@ -782,7 +782,7 @@ func cfUpgrade(tx walletdb.ReadWriteTx, publicPassphrase []byte, params *chaincf
 	if err != nil {
 		return err
 	}
-	err = putRawCFilter(txmgrBucket, params.GenesisHash[:], f.NBytes())
+	err = putRawCFilter(txmgrBucket, params.GenesisHash[:], f.Bytes())
 	if err != nil {
 		return errors.E(errors.IO, err)
 	}

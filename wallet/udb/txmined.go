@@ -188,7 +188,7 @@ func (s *Store) MainChainTip(ns walletdb.ReadBucket) (chainhash.Hash, int32) {
 //
 // The main chain tip may not be extended unless compact filters have been saved
 // for all existing main chain blocks.
-func (s *Store) ExtendMainChain(ns walletdb.ReadWriteBucket, header *wire.BlockHeader, f *gcs.Filter) error {
+func (s *Store) ExtendMainChain(ns walletdb.ReadWriteBucket, header *wire.BlockHeader, f *gcs.FilterV1) error {
 	height := int32(header.Height)
 	if height < 1 {
 		return errors.E(errors.Invalid, "block 0 cannot be added")
@@ -257,7 +257,7 @@ func (s *Store) ExtendMainChain(ns walletdb.ReadWriteBucket, header *wire.BlockH
 	}
 
 	// Save the compact filter
-	return putRawCFilter(ns, blockHash[:], f.NBytes())
+	return putRawCFilter(ns, blockHash[:], f.Bytes())
 }
 
 // ProcessedTxsBlockMarker returns the hash of the block which records the last
@@ -343,7 +343,7 @@ func (s *Store) MissingCFiltersHeight(dbtx walletdb.ReadTx) (int32, error) {
 // called incrementally to record all main chain block cfilters.  When all
 // cfilters of the main chain are recorded, extending the main chain becomes
 // possible again.
-func (s *Store) InsertMissingCFilters(dbtx walletdb.ReadWriteTx, blockHashes []*chainhash.Hash, filters []*gcs.Filter) error {
+func (s *Store) InsertMissingCFilters(dbtx walletdb.ReadWriteTx, blockHashes []*chainhash.Hash, filters []*gcs.FilterV1) error {
 	ns := dbtx.ReadWriteBucket(wtxmgrBucketKey)
 	v := ns.Get(rootHaveCFilters)
 	if len(v) == 1 && v[0] != 0 {
@@ -379,7 +379,7 @@ func (s *Store) InsertMissingCFilters(dbtx walletdb.ReadWriteTx, blockHashes []*
 		}
 
 		// Record cfilter for this block
-		err := putRawCFilter(ns, blockHash[:], filters[i].NBytes())
+		err := putRawCFilter(ns, blockHash[:], filters[i].Bytes())
 		if err != nil {
 			return err
 		}
@@ -401,7 +401,7 @@ func (s *Store) InsertMissingCFilters(dbtx walletdb.ReadWriteTx, blockHashes []*
 // BlockCFilter is a compact filter for a Eacred block.
 type BlockCFilter struct {
 	BlockHash chainhash.Hash
-	Filter    *gcs.Filter
+	Filter    *gcs.FilterV1
 }
 
 // GetMainChainCFilters returns compact filters from the main chain, starting at
@@ -436,7 +436,7 @@ func (s *Store) GetMainChainCFilters(dbtx walletdb.ReadTx, startHash *chainhash.
 		}
 		fCopy := make([]byte, len(rawFilter))
 		copy(fCopy, rawFilter)
-		f, err := gcs.FromNBytes(blockcf.P, fCopy)
+		f, err := gcs.FromBytesV1(blockcf.P, fCopy)
 		if err != nil {
 			return nil, err
 		}

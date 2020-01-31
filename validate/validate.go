@@ -62,7 +62,7 @@ func DCP0005MerkleRoot(block *wire.MsgBlock) error {
 // protocol matches the block.  Currently (without cfilter header commitments)
 // this is performed by reconstructing the filter from the block and comparing
 // equality.
-func RegularCFilter(block *wire.MsgBlock, filter *gcs.Filter) error {
+func RegularCFilter(block *wire.MsgBlock, filter *gcs.FilterV1) error {
 	const opf = "validate.RegularCFilter(%v)"
 
 	f, err := blockcf.Regular(block)
@@ -80,7 +80,7 @@ func RegularCFilter(block *wire.MsgBlock, filter *gcs.Filter) error {
 		blockHash := block.BlockHash()
 		op := errors.Opf(opf, &blockHash)
 		err := errors.Errorf("invalid regular cfilter: want=%x got=%x",
-			f.NBytes(), filter.NBytes())
+			f.Bytes(), filter.Bytes())
 		return errors.E(op, errors.Consensus, err)
 	}
 	return nil

@@ -238,7 +238,7 @@ func (r *RPC) Blocks(ctx context.Context, blockHashes []*chainhash.Hash) ([]*wir
 }
 
 // CFilter returns the committed filter for a block.
-func (r *RPC) CFilter(ctx context.Context, blockHash *chainhash.Hash) (*gcs.Filter, error) {
+func (r *RPC) CFilter(ctx context.Context, blockHash *chainhash.Hash) (*gcs.FilterV1, error) {
 	const opf = "dcrd.CFilter(%v)"
 
 	var f cfilter
@@ -251,11 +251,11 @@ func (r *RPC) CFilter(ctx context.Context, blockHash *chainhash.Hash) (*gcs.Filt
 }
 
 // CFilters returns committed filters for blocks.
-func (r *RPC) CFilters(ctx context.Context, blockHashes []*chainhash.Hash) ([]*gcs.Filter, error) {
+func (r *RPC) CFilters(ctx context.Context, blockHashes []*chainhash.Hash) ([]*gcs.FilterV1, error) {
 	const opf = "dcrd.CFilters(%v)"
 
 	// TODO: this is spammy and would be better implemented with a single RPC.
-	filters := make([]*gcs.Filter, len(blockHashes))
+	filters := make([]*gcs.FilterV1, len(blockHashes))
 	var g errgroup.Group
 	for i := range blockHashes {
 		i := i

@@ -21,7 +21,7 @@ type mockNetwork struct{}
 func (mockNetwork) Blocks(ctx context.Context, blockHashes []*chainhash.Hash) ([]*wire.MsgBlock, error) {
 	return nil, nil
 }
-func (mockNetwork) CFilters(ctx context.Context, blockHashes []*chainhash.Hash) ([]*gcs.Filter, error) {
+func (mockNetwork) CFilters(ctx context.Context, blockHashes []*chainhash.Hash) ([]*gcs.FilterV1, error) {
 	return nil, nil
 }
 func (mockNetwork) Headers(ctx context.Context, blockLocators []*chainhash.Hash, hashStop *chainhash.Hash) ([]*wire.BlockHeader, error) {

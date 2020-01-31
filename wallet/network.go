@@ -18,7 +18,7 @@ import (
 // to a single peer.
 type Peer interface {
 	Blocks(ctx context.Context, blockHashes []*chainhash.Hash) ([]*wire.MsgBlock, error)
-	CFilters(ctx context.Context, blockHashes []*chainhash.Hash) ([]*gcs.Filter, error)
+	CFilters(ctx context.Context, blockHashes []*chainhash.Hash) ([]*gcs.FilterV1, error)
 	Headers(ctx context.Context, blockLocators []*chainhash.Hash, hashStop *chainhash.Hash) ([]*wire.BlockHeader, error)
 	PublishTransactions(ctx context.Context, txs ...*wire.MsgTx) error
 }

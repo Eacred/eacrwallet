@@ -49,7 +49,7 @@ func (s *Syncer) Blocks(ctx context.Context, blockHashes []*chainhash.Hash) ([]*
 }
 
 // CFilters implements the CFilters method of the wallet.Peer interface.
-func (s *Syncer) CFilters(ctx context.Context, blockHashes []*chainhash.Hash) ([]*gcs.Filter, error) {
+func (s *Syncer) CFilters(ctx context.Context, blockHashes []*chainhash.Hash) ([]*gcs.FilterV1, error) {
 	for {
 		if err := ctx.Err(); err != nil {
 			return nil, err
@@ -143,7 +143,7 @@ func (s *Syncer) PublishTransactions(ctx context.Context, txs ...*wire.MsgTx) er
 func (s *Syncer) Rescan(ctx context.Context, blockHashes []chainhash.Hash, save func(*chainhash.Hash, []*wire.MsgTx) error) error {
 	const op errors.Op = "spv.Rescan"
 
-	cfilters := make([]*gcs.Filter, 0, len(blockHashes))
+	cfilters := make([]*gcs.FilterV1, 0, len(blockHashes))
 	for i := 0; i < len(blockHashes); i++ {
 		f, err := s.wallet.CFilter(ctx, &blockHashes[i])
 		if err != nil {

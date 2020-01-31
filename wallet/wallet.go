@@ -469,8 +469,8 @@ func (w *Wallet) BlockHeader(ctx context.Context, blockHash *chainhash.Hash) (*w
 }
 
 // CFilter returns the regular compact filter for a block.
-func (w *Wallet) CFilter(ctx context.Context, blockHash *chainhash.Hash) (*gcs.Filter, error) {
-	var f *gcs.Filter
+func (w *Wallet) CFilter(ctx context.Context, blockHash *chainhash.Hash) (*gcs.FilterV1, error) {
+	var f *gcs.FilterV1
 	err := walletdb.View(ctx, w.db, func(dbtx walletdb.ReadTx) error {
 		var err error
 		f, err = w.TxStore.CFilter(dbtx, blockHash)

@@ -48,7 +48,7 @@ func unhex(msg deserializer) json.Unmarshaler {
 // Filters are assumed to be serialized as <n filter> with a
 // consensus-determined P value.
 type cfilter struct {
-	Filter *gcs.Filter
+	Filter *gcs.FilterV1
 }
 
 func (f *cfilter) Deserialize(r io.Reader) error {
@@ -56,7 +56,7 @@ func (f *cfilter) Deserialize(r io.Reader) error {
 	if err != nil {
 		return err
 	}
-	f.Filter, err = gcs.FromNBytes(blockcf.P, b)
+	f.Filter, err = gcs.FromBytesV1(blockcf.P, b)
 	return err
 }
 

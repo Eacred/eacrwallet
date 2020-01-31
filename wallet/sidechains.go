@@ -34,7 +34,7 @@ type SidechainForest struct {
 type BlockNode struct {
 	Header  *wire.BlockHeader
 	Hash    *chainhash.Hash
-	Filter  *gcs.Filter
+	Filter  *gcs.FilterV1
 	parent  *BlockNode
 	workSum *big.Int
 }
@@ -62,7 +62,7 @@ func newSideChainRootedTree(root *BlockNode) *sidechainRootedTree {
 }
 
 // NewBlockNode creates a block node for usage with a SidechainForest.
-func NewBlockNode(header *wire.BlockHeader, hash *chainhash.Hash, filter *gcs.Filter) *BlockNode {
+func NewBlockNode(header *wire.BlockHeader, hash *chainhash.Hash, filter *gcs.FilterV1) *BlockNode {
 	return &BlockNode{
 		Header: header,
 		Hash:   hash,

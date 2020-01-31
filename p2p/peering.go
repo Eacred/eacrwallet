@@ -1142,7 +1142,7 @@ func (rp *RemotePeer) Transactions(ctx context.Context, hashes []*chainhash.Hash
 
 // CFilter requests a regular compact filter from a RemotePeer using getcfilter.
 // The same block can not be requested concurrently from the same peer.
-func (rp *RemotePeer) CFilter(ctx context.Context, blockHash *chainhash.Hash) (*gcs.Filter, error) {
+func (rp *RemotePeer) CFilter(ctx context.Context, blockHash *chainhash.Hash) (*gcs.FilterV1, error) {
 	const opf = "remotepeer(%v).CFilter(%v)"
 
 	m := wire.NewMsgGetCFilter(blockHash, wire.GCSFilterRegular)
@@ -1174,12 +1174,12 @@ func (rp *RemotePeer) CFilter(ctx context.Context, blockHash *chainhash.Hash) (*
 			out = nil
 		case m := <-c:
 			stalled.Stop()
-			var f *gcs.Filter
+			var f *gcs.FilterV1
 			var err error
 			if len(m.Data) == 0 {
-				f, err = gcs.FromBytes(0, blockcf.P, nil)
+				f, err = gcs.FromBytesV2ToV1(0, blockcf.P, nil)
 			} else {
-				f, err = gcs.FromNBytes(blockcf.P, m.Data)
+				f, err = gcs.FromBytesV1(blockcf.P, m.Data)
 			}
 			if err != nil {
 				op := errors.Opf(opf, rp.raddr, blockHash)
@@ -1193,12 +1193,12 @@ func (rp *RemotePeer) CFilter(ctx context.Context, blockHash *chainhash.Hash) (*
 // CFilters requests cfilters for all blocks described by blockHashes.  This
 // is currently implemented by making many separate getcfilter requests
 // concurrently and waiting on every result.
-func (rp *RemotePeer) CFilters(ctx context.Context, blockHashes []*chainhash.Hash) ([]*gcs.Filter, error) {
+func (rp *RemotePeer) CFilters(ctx context.Context, blockHashes []*chainhash.Hash) ([]*gcs.FilterV1, error) {
 	const opf = "remotepeer(%v).CFilters"
 
 	// TODO: this is spammy and would be better implemented with a single
 	// request/response.
-	filters := make([]*gcs.Filter, len(blockHashes))
+	filters := make([]*gcs.FilterV1, len(blockHashes))
 	g, ctx := errgroup.WithContext(ctx)
 	for i := range blockHashes {
 		i := i

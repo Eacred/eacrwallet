@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/chaincfg"
+	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/gcs"
 	"github.com/Eacred/eacrd/gcs/blockcf"
 	"github.com/Eacred/eacrd/wire"
@@ -77,10 +77,10 @@ func makeHeaderDataSlice(headers ...*wire.BlockHeader) []BlockHeaderData {
 	return data
 }
 
-func emptyFilters(n int) []*gcs.Filter {
-	f := make([]*gcs.Filter, n)
+func emptyFilters(n int) []*gcs.FilterV1 {
+	f := make([]*gcs.FilterV2, n)
 	for i := range f {
-		f[i], _ = gcs.FromBytes(0, blockcf.P, nil)
+		f[i], _ = gcs.FromBytesV2ToV1(0, blockcf.P, nil)
 	}
 	return f
 }

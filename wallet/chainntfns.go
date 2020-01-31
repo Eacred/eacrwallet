@@ -24,7 +24,7 @@ import (
 )
 
 func (w *Wallet) extendMainChain(ctx context.Context, op errors.Op, dbtx walletdb.ReadWriteTx,
-	header *wire.BlockHeader, f *gcs.Filter, transactions []*wire.MsgTx) ([]wire.OutPoint, error) {
+	header *wire.BlockHeader, f *gcs.FilterV1, transactions []*wire.MsgTx) ([]wire.OutPoint, error) {
 	txmgrNs := dbtx.ReadWriteBucket(wtxmgrNamespaceKey)
 
 	blockHash := header.BlockHash()

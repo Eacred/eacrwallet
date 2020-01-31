@@ -18,7 +18,7 @@ import (
 )
 
 func insertMainChainHeaders(s *Store, ns walletdb.ReadWriteBucket, addrmgrNs walletdb.ReadBucket,
-	headerData []BlockHeaderData, filters []*gcs.Filter) error {
+	headerData []BlockHeaderData, filters []*gcs.FilterV1) error {
 
 	for i := range headerData {
 		h := &headerData[i]
