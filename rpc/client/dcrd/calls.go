@@ -4,7 +4,7 @@
 
 // TODO: consistent error wrapping
 
-package ecrd
+package dcrd
 
 import (
 	"context"
