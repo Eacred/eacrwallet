@@ -20,8 +20,8 @@ type Params struct {
 // dcrd on the main network (wire.MainNet).
 var MainNetParams = Params{
 	Params:            chaincfg.MainNetParams(),
-	JSONRPCClientPort: "9109",
-	JSONRPCServerPort: "9660",
+	JSONRPCClientPort: "9669",
+	JSONRPCServerPort: "9110",
 	GRPCServerPort:    "9111",
 }
 
@@ -29,8 +29,8 @@ var MainNetParams = Params{
 // dcrd on the test network (version 3) (wire.TestNet3).
 var TestNet3Params = Params{
 	Params:            chaincfg.TestNet3Params(),
-	JSONRPCClientPort: "19109",
-	JSONRPCServerPort: "19660",
+	JSONRPCClientPort: "19669",
+	JSONRPCServerPort: "19110",
 	GRPCServerPort:    "19111",
 }
 
