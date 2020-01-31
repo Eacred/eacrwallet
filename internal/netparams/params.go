@@ -21,7 +21,7 @@ type Params struct {
 var MainNetParams = Params{
 	Params:            chaincfg.MainNetParams(),
 	JSONRPCClientPort: "9109",
-	JSONRPCServerPort: "9110",
+	JSONRPCServerPort: "9660",
 	GRPCServerPort:    "9111",
 }
 
@@ -30,7 +30,7 @@ var MainNetParams = Params{
 var TestNet3Params = Params{
 	Params:            chaincfg.TestNet3Params(),
 	JSONRPCClientPort: "19109",
-	JSONRPCServerPort: "19110",
+	JSONRPCServerPort: "19660",
 	GRPCServerPort:    "19111",
 }
 
