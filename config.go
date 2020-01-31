@@ -33,7 +33,7 @@ import (
 )
 
 const (
-	defaultCAFilename              = "dcrd.cert"
+	defaultCAFilename              = "ecrd.cert"
 	defaultConfigFilename          = "eacrwallet.conf"
 	defaultLogLevel                = "info"
 	defaultLogDirname              = "logs"
