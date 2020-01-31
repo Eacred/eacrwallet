@@ -10,7 +10,7 @@ package types
 
 import (
 	"github.com/Eacred/eacrd/dcrjson"
-	dcrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
+	ecrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
 )
 
 // Method describes the exact type used when registering methods with dcrjson.
@@ -798,12 +798,12 @@ func NewListUnspentCmd(minConf, maxConf *int, addresses *[]string) *ListUnspentC
 // LockUnspentCmd defines the lockunspent JSON-RPC command.
 type LockUnspentCmd struct {
 	Unlock       bool
-	Transactions []dcrdtypes.TransactionInput
+	Transactions []ecrdtypes.TransactionInput
 }
 
 // NewLockUnspentCmd returns a new instance which can be used to issue a
 // lockunspent JSON-RPC command.
-func NewLockUnspentCmd(unlock bool, transactions []dcrdtypes.TransactionInput) *LockUnspentCmd {
+func NewLockUnspentCmd(unlock bool, transactions []ecrdtypes.TransactionInput) *LockUnspentCmd {
 	return &LockUnspentCmd{
 		Unlock:       unlock,
 		Transactions: transactions,
@@ -1379,19 +1379,19 @@ func init() {
 		dcrjson.MustRegister(Method(register[i].method), register[i].cmd, 0)
 	}
 
-	// dcrd methods also implemented by eacrwallet
+	// ecrd methods also implemented by eacrwallet
 	register = []registeredMethod{
-		{"authenticate", (*dcrdtypes.AuthenticateCmd)(nil)},
-		{"getbestblock", (*dcrdtypes.GetBestBlockCmd)(nil)},
-		{"getbestblockhash", (*dcrdtypes.GetBestBlockHashCmd)(nil)},
-		{"getblockcount", (*dcrdtypes.GetBlockCountCmd)(nil)},
-		{"getblockhash", (*dcrdtypes.GetBlockHashCmd)(nil)},
-		{"getinfo", (*dcrdtypes.GetInfoCmd)(nil)},
-		{"help", (*dcrdtypes.HelpCmd)(nil)},
-		{"ticketsforaddress", (*dcrdtypes.TicketsForAddressCmd)(nil)},
-		{"validateaddress", (*dcrdtypes.ValidateAddressCmd)(nil)},
-		{"verifymessage", (*dcrdtypes.VerifyMessageCmd)(nil)},
-		{"version", (*dcrdtypes.VersionCmd)(nil)},
+		{"authenticate", (*ecrdtypes.AuthenticateCmd)(nil)},
+		{"getbestblock", (*ecrdtypes.GetBestBlockCmd)(nil)},
+		{"getbestblockhash", (*ecrdtypes.GetBestBlockHashCmd)(nil)},
+		{"getblockcount", (*ecrdtypes.GetBlockCountCmd)(nil)},
+		{"getblockhash", (*ecrdtypes.GetBlockHashCmd)(nil)},
+		{"getinfo", (*ecrdtypes.GetInfoCmd)(nil)},
+		{"help", (*ecrdtypes.HelpCmd)(nil)},
+		{"ticketsforaddress", (*ecrdtypes.TicketsForAddressCmd)(nil)},
+		{"validateaddress", (*ecrdtypes.ValidateAddressCmd)(nil)},
+		{"verifymessage", (*ecrdtypes.VerifyMessageCmd)(nil)},
+		{"version", (*ecrdtypes.VersionCmd)(nil)},
 	}
 	for i := range register {
 		dcrjson.MustRegister(Method(register[i].method), register[i].cmd, 0)

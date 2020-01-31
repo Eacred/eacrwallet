@@ -25,7 +25,7 @@ encryption will extend to transactions as well.
 
 eacrwallet provides two modes of operation to connect to the Eacred
 network.  The first (and default) is to communicate with a single
-trusted `dcrd` instance using JSON-RPC.  The second is a
+trusted `ecrd` instance using JSON-RPC.  The second is a
 privacy-preserving Simplified Payment Verification (SPV) mode (enabled
 with the `--spv` flag) where the wallet connects either to specified
 peers (with `--spvconnect`) or peers discovered from seeders and other
@@ -113,13 +113,13 @@ To run the tests locally without docker:
 ## Getting Started
 
 The following instructions detail how to get started with eacrwallet connecting
-to a localhost dcrd.  Commands should be run in `cmd.exe` or PowerShell on
+to a localhost ecrd.  Commands should be run in `cmd.exe` or PowerShell on
 Windows, or any terminal emulator on *nix.
 
-- Run the following command to start dcrd:
+- Run the following command to start ecrd:
 
 ```
-dcrd -u rpcuser -P rpcpass
+ecrd -u rpcuser -P rpcpass
 ```
 
 - Run the following command to create a wallet:
@@ -135,22 +135,22 @@ eacrwallet -u rpcuser -P rpcpass
 ```
 
 If everything appears to be working, it is recommended at this point to
-copy the sample dcrd and eacrwallet configurations and update with your
+copy the sample ecrd and eacrwallet configurations and update with your
 RPC username and password.
 
 PowerShell (Installed from source):
 ```
-PS> cp $env:GOPATH\src\github.com\eacred\dcrd\sample-dcrd.conf $env:LOCALAPPDATA\Dcrd\dcrd.conf
+PS> cp $env:GOPATH\src\github.com\eacred\ecrd\sample-ecrd.conf $env:LOCALAPPDATA\Ecrd\ecrd.conf
 PS> cp $env:GOPATH\src\github.com\eacred\eacrwallet\sample-eacrwallet.conf $env:LOCALAPPDATA\Dcrwallet\eacrwallet.conf
-PS> $editor $env:LOCALAPPDATA\Dcrd\dcrd.conf
+PS> $editor $env:LOCALAPPDATA\Ecrd\ecrd.conf
 PS> $editor $env:LOCALAPPDATA\Dcrwallet\eacrwallet.conf
 ```
 
 Linux/BSD/POSIX (Installed from source):
 ```bash
-$ cp $GOPATH/src/github.com/Eacred/eacrd/sample-dcrd.conf ~/.dcrd/dcrd.conf
+$ cp $GOPATH/src/github.com/Eacred/eacrd/sample-ecrd.conf ~/.ecrd/ecrd.conf
 $ cp $GOPATH/src/github.com/Eacred/eacrwallet/sample-eacrwallet.conf ~/.eacrwallet/eacrwallet.conf
-$ $EDITOR ~/.dcrd/dcrd.conf
+$ $EDITOR ~/.ecrd/ecrd.conf
 $ $EDITOR ~/.eacrwallet/eacrwallet.conf
 ```
 

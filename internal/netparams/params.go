@@ -17,7 +17,7 @@ type Params struct {
 }
 
 // MainNetParams contains parameters specific running eacrwallet and
-// dcrd on the main network (wire.MainNet).
+// ecrd on the main network (wire.MainNet).
 var MainNetParams = Params{
 	Params:            chaincfg.MainNetParams(),
 	JSONRPCClientPort: "9669",
@@ -26,7 +26,7 @@ var MainNetParams = Params{
 }
 
 // TestNet3Params contains parameters specific running eacrwallet and
-// dcrd on the test network (version 3) (wire.TestNet3).
+// ecrd on the test network (version 3) (wire.TestNet3).
 var TestNet3Params = Params{
 	Params:            chaincfg.TestNet3Params(),
 	JSONRPCClientPort: "19669",

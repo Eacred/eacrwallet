@@ -316,7 +316,7 @@ or upon received an error.
 
 - `string network_address`: The host/IP and optional port of the RPC server to
   connect to.  IP addresses may be IPv4 or IPv6.  If the port is missing, a
-  default port is chosen corresponding to the default dcrd RPC port of the
+  default port is chosen corresponding to the default ecrd RPC port of the
   active Eacred network.
 
 - `string username`: The RPC username required to authenticate to the RPC

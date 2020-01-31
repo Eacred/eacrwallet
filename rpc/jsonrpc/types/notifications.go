@@ -17,11 +17,11 @@ const (
 	// Deprecated: eacrwallet does not provide JSON-RPC notifications
 	AccountBalanceNtfnMethod = "accountbalance"
 
-	// DcrdConnectedNtfnMethod is the method used for notifications when
+	// EcrdConnectedNtfnMethod is the method used for notifications when
 	// a wallet server is connected to a chain server.
 	//
 	// Deprecated: eacrwallet does not provide JSON-RPC notifications
-	DcrdConnectedNtfnMethod = "dcrdconnected"
+	EcrdConnectedNtfnMethod = "ecrdconnected"
 
 	// NewTicketsNtfnMethod is the method of the daemon
 	// newtickets notification.
@@ -87,19 +87,19 @@ func NewAccountBalanceNtfn(account string, balance float64, confirmed bool) *Acc
 	}
 }
 
-// DcrdConnectedNtfn defines the dcrddconnected JSON-RPC notification.
+// EcrdConnectedNtfn defines the ecrddconnected JSON-RPC notification.
 //
 // Deprecated: eacrwallet does not provide JSON-RPC notifications
-type DcrdConnectedNtfn struct {
+type EcrdConnectedNtfn struct {
 	Connected bool
 }
 
-// NewDcrdConnectedNtfn returns a new instance which can be used to issue a
-// dcrddconnected JSON-RPC notification.
+// NewEcrdConnectedNtfn returns a new instance which can be used to issue a
+// ecrddconnected JSON-RPC notification.
 //
 // Deprecated: eacrwallet does not provide JSON-RPC notifications
-func NewDcrdConnectedNtfn(connected bool) *DcrdConnectedNtfn {
-	return &DcrdConnectedNtfn{
+func NewEcrdConnectedNtfn(connected bool) *EcrdConnectedNtfn {
+	return &EcrdConnectedNtfn{
 		Connected: connected,
 	}
 }
@@ -210,7 +210,7 @@ func init() {
 	// Deprecated notifications (only registered with plain string method)
 	register := []registeredMethod{
 		{AccountBalanceNtfnMethod, (*AccountBalanceNtfn)(nil)},
-		{DcrdConnectedNtfnMethod, (*DcrdConnectedNtfn)(nil)},
+		{EcrdConnectedNtfnMethod, (*EcrdConnectedNtfn)(nil)},
 		{NewTxNtfnMethod, (*NewTxNtfn)(nil)},
 		{TicketPurchasedNtfnMethod, (*TicketPurchasedNtfn)(nil)},
 		{RevocationCreatedNtfnMethod, (*RevocationCreatedNtfn)(nil)},

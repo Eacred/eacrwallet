@@ -557,10 +557,10 @@ func (w *Wallet) findLastUsedAccount(ctx context.Context, p Peer, blockCache blo
 }
 
 // existsAddrIndexFinder implements address and account discovery using the
-// exists address index of a trusted dcrd RPC server.
+// exists address index of a trusted ecrd RPC server.
 type existsAddrIndexFinder struct {
 	wallet *Wallet
-	rpc    *dcrd.RPC
+	rpc    *ecrd.RPC
 }
 
 func (f *existsAddrIndexFinder) findLastUsedAccount(ctx context.Context, coinTypeXpriv *hd.ExtendedKey) (uint32, error) {
@@ -729,10 +729,10 @@ func (f *existsAddrIndexFinder) find(ctx context.Context, finder *addrFinder) er
 	return g.Wait()
 }
 
-func rpcFromPeer(p Peer) (*dcrd.RPC, bool) {
+func rpcFromPeer(p Peer) (*ecrd.RPC, bool) {
 	switch p := p.(type) {
 	case Caller:
-		return dcrd.New(p), true
+		return ecrd.New(p), true
 	default:
 		return nil, false
 	}

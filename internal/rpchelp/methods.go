@@ -8,7 +8,7 @@
 package rpchelp
 
 import (
-	dcrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
+	ecrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
 	"github.com/Eacred/eacrwallet/rpc/jsonrpc/types"
 )
 
@@ -44,7 +44,7 @@ var Methods = []struct {
 	{"getaddressesbyaccount", returnsStringArray},
 	{"getbalance", []interface{}{(*types.GetBalanceResult)(nil)}},
 	{"getbestblockhash", returnsString},
-	{"getbestblock", []interface{}{(*dcrdtypes.GetBestBlockResult)(nil)}},
+	{"getbestblock", []interface{}{(*ecrdtypes.GetBestBlockResult)(nil)}},
 	{"getblockcount", returnsNumber},
 	{"getblockhash", returnsString},
 	{"getinfo", []interface{}{(*types.InfoWalletResult)(nil)}},
@@ -70,7 +70,7 @@ var Methods = []struct {
 	{"listaccounts", []interface{}{(*map[string]float64)(nil)}},
 	{"listaddresstransactions", returnsLTRArray},
 	{"listalltransactions", returnsLTRArray},
-	{"listlockunspent", []interface{}{(*[]dcrdtypes.TransactionInput)(nil)}},
+	{"listlockunspent", []interface{}{(*[]ecrdtypes.TransactionInput)(nil)}},
 	{"listreceivedbyaccount", []interface{}{(*[]types.ListReceivedByAccountResult)(nil)}},
 	{"listreceivedbyaddress", []interface{}{(*[]types.ListReceivedByAddressResult)(nil)}},
 	{"listscripts", []interface{}{(*types.ListScriptsResult)(nil)}},
@@ -99,7 +99,7 @@ var Methods = []struct {
 	{"ticketsforaddress", returnsBool},
 	{"validateaddress", []interface{}{(*types.ValidateAddressWalletResult)(nil)}},
 	{"verifymessage", returnsBool},
-	{"version", []interface{}{(*map[string]dcrdtypes.VersionResult)(nil)}},
+	{"version", []interface{}{(*map[string]ecrdtypes.VersionResult)(nil)}},
 	{"walletinfo", []interface{}{(*types.WalletInfoResult)(nil)}},
 	{"walletislocked", returnsBool},
 	{"walletlock", nil},

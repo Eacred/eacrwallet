@@ -2703,7 +2703,7 @@ func ticketChangeMatured(params *chaincfg.Params, txHeight, curHeight int32) boo
 // ticketMatured returns whether a ticket mined at txHeight has
 // reached ticket maturity in a chain with a tip height curHeight.
 func ticketMatured(params *chaincfg.Params, txHeight, curHeight int32) bool {
-	// dcrd has an off-by-one in the calculation of the ticket
+	// ecrd has an off-by-one in the calculation of the ticket
 	// maturity, which results in maturity being one block higher
 	// than the params would indicate.
 	return txHeight >= 0 && curHeight-txHeight > int32(params.TicketMaturity)

@@ -5,7 +5,7 @@
 
 package wallet
 
-// This code was copied from dcrd/blockchain/difficulty.go and modified for
+// This code was copied from ecrd/blockchain/difficulty.go and modified for
 // eacrwallet's header storage.
 
 import (
@@ -359,7 +359,7 @@ func (w *Wallet) ancestorHeaderAtHeight(dbtx walletdb.ReadTx, h *wire.BlockHeade
 	case height == int32(h.Height):
 		return h, nil
 	case height > int32(h.Height), height < 0:
-		return nil, nil // dcrd's blockNode.Ancestor returns nil for child heights
+		return nil, nil // ecrd's blockNode.Ancestor returns nil for child heights
 	}
 
 	if len(chain) > 0 && height-int32(chain[0].Header.Height) >= 0 {

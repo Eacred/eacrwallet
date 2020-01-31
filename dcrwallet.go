@@ -368,7 +368,7 @@ func run(ctx context.Context) error {
 
 	// When not running with --noinitialload, it is the main package's
 	// responsibility to synchronize the wallet with the network through SPV or
-	// the trusted dcrd server.  This blocks until cancelled.
+	// the trusted ecrd server.  This blocks until cancelled.
 	if !cfg.NoInitialLoad {
 		if done(ctx) {
 			return ctx.Err()
@@ -496,15 +496,15 @@ func spvLoop(ctx context.Context, w *wallet.Wallet) {
 func rpcSyncLoop(ctx context.Context, w *wallet.Wallet) {
 	certs := readCAFile()
 	dial := cfg.dial
-	if cfg.NoDcrdProxy {
+	if cfg.NoEcrdProxy {
 		dial = new(net.Dialer).DialContext
 	}
 	for {
 		syncer := chain.NewSyncer(w, &chain.RPCOptions{
 			Address:     cfg.RPCConnect,
 			DefaultPort: activeNet.JSONRPCClientPort,
-			User:        cfg.DcrdUsername,
-			Pass:        cfg.DcrdPassword,
+			User:        cfg.EcrdUsername,
+			Pass:        cfg.EcrdPassword,
 			Dial:        dial,
 			CA:          certs,
 			Insecure:    cfg.DisableClientTLS,

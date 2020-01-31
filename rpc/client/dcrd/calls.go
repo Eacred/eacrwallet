@@ -4,7 +4,7 @@
 
 // TODO: consistent error wrapping
 
-package dcrd
+package ecrd
 
 import (
 	"context"
@@ -32,7 +32,7 @@ type Caller interface {
 	Call(ctx context.Context, method string, res interface{}, args ...interface{}) error
 }
 
-// RPC provides methods for calling dcrd JSON-RPCs without exposing the details
+// RPC provides methods for calling ecrd JSON-RPCs without exposing the details
 // of JSON encoding.
 type RPC struct {
 	Caller
@@ -78,7 +78,7 @@ func exists(ctx context.Context, r *RPC, method string, res *bitset.Bytes, param
 // ExistsLiveTicket returns whether a ticket identified by its hash is currently
 // live and not immature.
 func (r *RPC) ExistsLiveTicket(ctx context.Context, ticket *chainhash.Hash) (bool, error) {
-	const op errors.Op = "dcrd.ExistsLiveTicket"
+	const op errors.Op = "ecrd.ExistsLiveTicket"
 	var exists bool
 	err := r.Call(ctx, "existsliveticket", &exists, ticket.String())
 	if err != nil {
@@ -90,7 +90,7 @@ func (r *RPC) ExistsLiveTicket(ctx context.Context, ticket *chainhash.Hash) (boo
 // ExistsLiveExpiredTickets returns bitsets identifying whether each ticket
 // is currently live or expired.
 func (r *RPC) ExistsLiveExpiredTickets(ctx context.Context, tickets []*chainhash.Hash) (live, expired bitset.Bytes, err error) {
-	const op errors.Op = "dcrd.ExistsLiveExpiredTickets"
+	const op errors.Op = "ecrd.ExistsLiveExpiredTickets"
 	// Reuse the single json.RawMessage for both calls
 	ticketArray, _ := json.Marshal(hashSliceToStrings(tickets))
 	errs := make(chan error, 2)
@@ -111,7 +111,7 @@ func (r *RPC) ExistsLiveExpiredTickets(ctx context.Context, tickets []*chainhash
 // ExistsExpiredMissedTickets returns bitsets identifying whether each ticket
 // is currently expired or missed.
 func (r *RPC) ExistsExpiredMissedTickets(ctx context.Context, tickets []*chainhash.Hash) (expired, missed bitset.Bytes, err error) {
-	const op errors.Op = "dcrd.ExistsExpiredMissedTickets"
+	const op errors.Op = "ecrd.ExistsExpiredMissedTickets"
 	ticketArray, _ := json.Marshal(hashSliceToStrings(tickets))
 	errs := make(chan error, 2)
 	go func() { errs <- exists(ctx, r, "existsexpiredtickets", &expired, ticketArray) }()
@@ -125,10 +125,10 @@ func (r *RPC) ExistsExpiredMissedTickets(ctx context.Context, tickets []*chainha
 }
 
 // UsedAddresses returns a bitset identifying whether each address has been
-// publically used on the blockchain.  This feature requires the optional dcrd
+// publically used on the blockchain.  This feature requires the optional ecrd
 // existsaddress index to be enabled.
 func (r *RPC) UsedAddresses(ctx context.Context, addrs []dcrutil.Address) (bitset.Bytes, error) {
-	const op errors.Op = "dcrd.UsedAddresses"
+	const op errors.Op = "ecrd.UsedAddresses"
 	addrArray, _ := json.Marshal(addrSliceToStrings(addrs))
 	var bits bitset.Bytes
 	err := exists(ctx, r, "existsaddresses", &bits, addrArray)
@@ -141,7 +141,7 @@ func (r *RPC) UsedAddresses(ctx context.Context, addrs []dcrutil.Address) (bitse
 // ExistsLiveTickets returns a bitset identifying whether each ticket is
 // currently live.
 func (r *RPC) ExistsLiveTickets(ctx context.Context, tickets []*chainhash.Hash) (bitset.Bytes, error) {
-	const op errors.Op = "dcrd.ExistsLiveTickets"
+	const op errors.Op = "ecrd.ExistsLiveTickets"
 	ticketArray, _ := json.Marshal(hashSliceToStrings(tickets))
 	var bits bitset.Bytes
 	err := exists(ctx, r, "existslivetickets", &bits, ticketArray)
@@ -159,7 +159,7 @@ func (r *RPC) ExistsLiveTickets(ctx context.Context, tickets []*chainhash.Hash) 
 //   "votes"
 //   "revocations"
 func (r *RPC) MempoolCount(ctx context.Context, kind string) (int, error) {
-	const op errors.Op = "dcrd.MempoolCount"
+	const op errors.Op = "ecrd.MempoolCount"
 	// This is rather inefficient, as only the count is needed, not all
 	// matching hashes.
 	var hashStrings []string
@@ -170,11 +170,11 @@ func (r *RPC) MempoolCount(ctx context.Context, kind string) (int, error) {
 	return len(hashStrings), nil
 }
 
-// PublishTransaction submits the transaction to dcrd mempool for acceptance.
+// PublishTransaction submits the transaction to ecrd mempool for acceptance.
 // If accepted, the transaction is published to other peers.
 // The transaction may not be an orphan.
 func (r *RPC) PublishTransaction(ctx context.Context, tx *wire.MsgTx) error {
-	const op errors.Op = "dcrd.PublishTransaction"
+	const op errors.Op = "ecrd.PublishTransaction"
 	var b strings.Builder
 	b.Grow(tx.SerializeSize() * 2)
 	err := tx.Serialize(hex.NewEncoder(&b))
@@ -193,13 +193,13 @@ func (r *RPC) PublishTransaction(ctx context.Context, tx *wire.MsgTx) error {
 	return nil
 }
 
-// PublishTransactions submits each transaction to dcrd mempool for acceptance.
+// PublishTransactions submits each transaction to ecrd mempool for acceptance.
 // If accepted, the transaction is published to other peers.
 // Transactions are sent in order and later transactions may spend outputs of
 // previous transactions.
 // No transaction may be an orphan.
 func (r *RPC) PublishTransactions(ctx context.Context, txs ...*wire.MsgTx) error {
-	const op errors.Op = "dcrd.PublishTransactions"
+	const op errors.Op = "ecrd.PublishTransactions"
 
 	// sendrawtransaction does not allow orphans, so we can not concurrently
 	// send transactions.  All transaction sends are attempted, and the
@@ -219,7 +219,7 @@ func (r *RPC) PublishTransactions(ctx context.Context, txs ...*wire.MsgTx) error
 
 // Blocks returns the blocks for each block hash.
 func (r *RPC) Blocks(ctx context.Context, blockHashes []*chainhash.Hash) ([]*wire.MsgBlock, error) {
-	const op errors.Op = "dcrd.Blocks"
+	const op errors.Op = "ecrd.Blocks"
 
 	blocks := make([]*wire.MsgBlock, len(blockHashes))
 	var g errgroup.Group
@@ -239,7 +239,7 @@ func (r *RPC) Blocks(ctx context.Context, blockHashes []*chainhash.Hash) ([]*wir
 
 // CFilter returns the committed filter for a block.
 func (r *RPC) CFilter(ctx context.Context, blockHash *chainhash.Hash) (*gcs.FilterV1, error) {
-	const opf = "dcrd.CFilter(%v)"
+	const opf = "ecrd.CFilter(%v)"
 
 	var f cfilter
 	err := r.Call(ctx, "getcfilter", unhex(&f), blockHash.String(), "regular")
@@ -252,7 +252,7 @@ func (r *RPC) CFilter(ctx context.Context, blockHash *chainhash.Hash) (*gcs.Filt
 
 // CFilters returns committed filters for blocks.
 func (r *RPC) CFilters(ctx context.Context, blockHashes []*chainhash.Hash) ([]*gcs.FilterV1, error) {
-	const opf = "dcrd.CFilters(%v)"
+	const opf = "ecrd.CFilters(%v)"
 
 	// TODO: this is spammy and would be better implemented with a single RPC.
 	filters := make([]*gcs.FilterV1, len(blockHashes))
@@ -278,9 +278,9 @@ func (r *RPC) CFilters(ctx context.Context, blockHashes []*chainhash.Hash) ([]*g
 }
 
 // Headers returns the block headers starting at the fork point between the
-// client and the dcrd server identified by the client's block locators.
+// client and the ecrd server identified by the client's block locators.
 func (r *RPC) Headers(ctx context.Context, blockLocators []*chainhash.Hash, hashStop *chainhash.Hash) ([]*wire.BlockHeader, error) {
-	const op errors.Op = "dcrd.Headers"
+	const op errors.Op = "ecrd.Headers"
 
 	res := &struct {
 		Headers *headers `json:"headers"`
@@ -298,7 +298,7 @@ func (r *RPC) Headers(ctx context.Context, blockLocators []*chainhash.Hash, hash
 // for relevant transaction notifications and rescans.
 // Addresses and outpoints are added to an existing filter if reload is false.
 func (r *RPC) LoadTxFilter(ctx context.Context, reload bool, addrs []dcrutil.Address, outpoints []wire.OutPoint) error {
-	const op errors.Op = "dcrd.LoadTxFilter"
+	const op errors.Op = "ecrd.LoadTxFilter"
 
 	type outpoint struct {
 		Hash  string `json:"hash"`
@@ -325,7 +325,7 @@ func (r *RPC) LoadTxFilter(ctx context.Context, reload bool, addrs []dcrutil.Add
 // filter to determine which transactions are possibly relevant to the client.
 // The save function is called for the discovered transactions from each block.
 func (r *RPC) Rescan(ctx context.Context, blocks []chainhash.Hash, save func(block *chainhash.Hash, txs []*wire.MsgTx) error) error {
-	const op errors.Op = "dcrd.Rescan"
+	const op errors.Op = "ecrd.Rescan"
 
 	var res struct {
 		DiscoveredData []struct {
@@ -362,7 +362,7 @@ func (r *RPC) Rescan(ctx context.Context, blocks []chainhash.Hash, save func(blo
 // StakeDifficulty returns the stake difficulty (AKA ticket price) of the next
 // block.
 func (r *RPC) StakeDifficulty(ctx context.Context) (dcrutil.Amount, error) {
-	const op errors.Op = "dcrd.StakeDifficulty"
+	const op errors.Op = "ecrd.StakeDifficulty"
 
 	var res struct {
 		Sdiff float64 `json:"nextstakedifficulty"`

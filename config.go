@@ -61,7 +61,7 @@ const (
 )
 
 var (
-	dcrdDefaultCAFile  = filepath.Join(dcrutil.AppDataDir("dcrd", false), "rpc.cert")
+	ecrdDefaultCAFile  = filepath.Join(dcrutil.AppDataDir("ecrd", false), "rpc.cert")
 	defaultAppDataDir  = dcrutil.AppDataDir("eacrwallet", false)
 	defaultConfigFile  = filepath.Join(defaultAppDataDir, defaultConfigFilename)
 	defaultRPCKeyFile  = filepath.Join(defaultAppDataDir, "rpc.key")
@@ -104,11 +104,11 @@ type config struct {
 	DisableCoinTypeUpgrades bool                `long:"disablecointypeupgrades" description:"Never upgrade from legacy to SLIP0044 coin type keys"`
 
 	// RPC client options
-	RPCConnect       string                  `short:"c" long:"rpcconnect" description:"Network address of dcrd RPC server"`
-	CAFile           *cfgutil.ExplicitString `long:"cafile" description:"dcrd RPC Certificate Authority"`
-	DisableClientTLS bool                    `long:"noclienttls" description:"Disable TLS for dcrd RPC; only allowed when connecting to localhost"`
-	DcrdUsername     string                  `long:"dcrdusername" description:"dcrd RPC username; overrides --username"`
-	DcrdPassword     string                  `long:"dcrdpassword" default-mask:"-" description:"dcrd RPC password; overrides --password"`
+	RPCConnect       string                  `short:"c" long:"rpcconnect" description:"Network address of ecrd RPC server"`
+	CAFile           *cfgutil.ExplicitString `long:"cafile" description:"ecrd RPC Certificate Authority"`
+	DisableClientTLS bool                    `long:"noclienttls" description:"Disable TLS for ecrd RPC; only allowed when connecting to localhost"`
+	EcrdUsername     string                  `long:"ecrdusername" description:"ecrd RPC username; overrides --username"`
+	EcrdPassword     string                  `long:"ecrdpassword" default-mask:"-" description:"ecrd RPC password; overrides --password"`
 
 	// Proxy and Tor settings
 	Proxy        string `long:"proxy" description:"Establish network connections and DNS lookups through a SOCKS5 proxy (e.g. 127.0.0.1:9050)"`
@@ -116,7 +116,7 @@ type config struct {
 	ProxyPass    string `long:"proxypass" default-mask:"-" description:"Proxy server password"`
 	CircuitLimit int    `long:"circuitlimit" description:"Set maximum number of open Tor circuits; used only when --torisolation is enabled"`
 	TorIsolation bool   `long:"torisolation" description:"Enable Tor stream isolation by randomizing user credentials for each connection"`
-	NoDcrdProxy  bool   `long:"nodcrdproxy" description:"Never use configured proxy to dial dcrd websocket connectons"`
+	NoEcrdProxy  bool   `long:"noecrdproxy" description:"Never use configured proxy to dial ecrd websocket connectons"`
 	dial         func(ctx context.Context, network, address string) (net.Conn, error)
 	lookup       func(name string) ([]net.IP, error)
 
@@ -136,8 +136,8 @@ type config struct {
 	NoLegacyRPC            bool                    `long:"nolegacyrpc" description:"Disable JSON-RPC server"`
 	LegacyRPCMaxClients    int64                   `long:"rpcmaxclients" description:"Max JSON-RPC HTTP POST clients"`
 	LegacyRPCMaxWebsockets int64                   `long:"rpcmaxwebsockets" description:"Max JSON-RPC websocket clients"`
-	Username               string                  `short:"u" long:"username" description:"JSON-RPC username and default dcrd RPC username"`
-	Password               string                  `short:"P" long:"password" default-mask:"-" description:"JSON-RPC password and default dcrd RPC password"`
+	Username               string                  `short:"u" long:"username" description:"JSON-RPC username and default ecrd RPC username"`
+	Password               string                  `short:"P" long:"password" default-mask:"-" description:"JSON-RPC password and default ecrd RPC password"`
 
 	// IPC options
 	PipeTx            *uint `long:"pipetx" description:"File descriptor or handle of write end pipe to enable child -> parent process communication"`
@@ -785,12 +785,12 @@ func loadConfig(ctx context.Context) (*config, []string, error) {
 			return loadConfigError(err)
 		}
 	} else {
-		// If CAFile is unset, choose either the copy or local dcrd cert.
+		// If CAFile is unset, choose either the copy or local ecrd cert.
 		if !cfg.CAFile.ExplicitlySet() {
 			cfg.CAFile.Value = filepath.Join(cfg.AppDataDir.Value, defaultCAFilename)
 
 			// If the CA copy does not exist, check if we're connecting to
-			// a local dcrd and switch to its RPC cert if it exists.
+			// a local ecrd and switch to its RPC cert if it exists.
 			certExists, err := cfgutil.FileExists(cfg.CAFile.Value)
 			if err != nil {
 				fmt.Fprintln(os.Stderr, err)
@@ -798,14 +798,14 @@ func loadConfig(ctx context.Context) (*config, []string, error) {
 			}
 			if !certExists {
 				if _, ok := localhostListeners[RPCHost]; ok {
-					dcrdCertExists, err := cfgutil.FileExists(
-						dcrdDefaultCAFile)
+					ecrdCertExists, err := cfgutil.FileExists(
+						ecrdDefaultCAFile)
 					if err != nil {
 						fmt.Fprintln(os.Stderr, err)
 						return loadConfigError(err)
 					}
-					if dcrdCertExists {
-						cfg.CAFile.Value = dcrdDefaultCAFile
+					if ecrdCertExists {
+						cfg.CAFile.Value = ecrdDefaultCAFile
 					}
 				}
 			}
@@ -922,15 +922,15 @@ func loadConfig(ctx context.Context) (*config, []string, error) {
 	cfg.RPCCert.Value = cleanAndExpandPath(cfg.RPCCert.Value)
 	cfg.RPCKey.Value = cleanAndExpandPath(cfg.RPCKey.Value)
 
-	// If the dcrd username or password are unset, use the same auth as for
-	// the client.  The two settings were previously shared for dcrd and
+	// If the ecrd username or password are unset, use the same auth as for
+	// the client.  The two settings were previously shared for ecrd and
 	// client auth, so this avoids breaking backwards compatibility while
-	// allowing users to use different auth settings for dcrd and wallet.
-	if cfg.DcrdUsername == "" {
-		cfg.DcrdUsername = cfg.Username
+	// allowing users to use different auth settings for ecrd and wallet.
+	if cfg.EcrdUsername == "" {
+		cfg.EcrdUsername = cfg.Username
 	}
-	if cfg.DcrdPassword == "" {
-		cfg.DcrdPassword = cfg.Password
+	if cfg.EcrdPassword == "" {
+		cfg.EcrdPassword = cfg.Password
 	}
 
 	// Warn if user still has an old ticket buyer configuration file.

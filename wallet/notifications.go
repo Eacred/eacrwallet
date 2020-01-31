@@ -177,7 +177,7 @@ func makeTxSummary(dbtx walletdb.ReadTx, w *Wallet, details *udb.TxDetails) Tran
 	}
 }
 
-func makeTicketSummary(ctx context.Context, rpc *dcrd.RPC, dbtx walletdb.ReadTx, w *Wallet, details *udb.TicketDetails) *TicketSummary {
+func makeTicketSummary(ctx context.Context, rpc *ecrd.RPC, dbtx walletdb.ReadTx, w *Wallet, details *udb.TicketDetails) *TicketSummary {
 	var ticketStatus = TicketStatusLive
 
 	ticketTransactionDetails := makeTxSummary(dbtx, w, details.Ticket)

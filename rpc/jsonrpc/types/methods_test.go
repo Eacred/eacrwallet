@@ -13,7 +13,7 @@ import (
 	"testing"
 
 	"github.com/Eacred/eacrd/dcrjson"
-	dcrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
+	ecrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
 )
 
 // TestWalletSvrCmds tests all of the wallet server commands marshal and
@@ -789,7 +789,7 @@ func TestWalletSvrCmds(t *testing.T) {
 				return dcrjson.NewCmd("lockunspent", true, `[{"txid":"123","vout":1}]`)
 			},
 			staticCmd: func() interface{} {
-				txInputs := []dcrdtypes.TransactionInput{
+				txInputs := []ecrdtypes.TransactionInput{
 					{Txid: "123", Vout: 1},
 				}
 				return NewLockUnspentCmd(true, txInputs)
@@ -797,7 +797,7 @@ func TestWalletSvrCmds(t *testing.T) {
 			marshalled: `{"jsonrpc":"1.0","method":"lockunspent","params":[true,[{"txid":"123","vout":1,"tree":0}]],"id":1}`,
 			unmarshalled: &LockUnspentCmd{
 				Unlock: true,
-				Transactions: []dcrdtypes.TransactionInput{
+				Transactions: []ecrdtypes.TransactionInput{
 					{Txid: "123", Vout: 1},
 				},
 			},

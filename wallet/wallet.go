@@ -26,7 +26,7 @@ import (
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/gcs"
 	"github.com/Eacred/eacrd/hdkeychain"
-	dcrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
+	ecrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/eacrwallet/deployments"
@@ -942,7 +942,7 @@ func log2(x int) int {
 }
 
 // BlockLocators returns block locators, suitable for use in a getheaders wire
-// message or dcrd JSON-RPC request, for the blocks in sidechain and saved in
+// message or ecrd JSON-RPC request, for the blocks in sidechain and saved in
 // the wallet's main chain.  For memory and lookup efficiency, many older hashes
 // are skipped, with increasing gaps between included hashes.
 //
@@ -1435,7 +1435,7 @@ func (w *Wallet) CalculateAccountBalances(ctx context.Context, confirms int32) (
 
 // CurrentAddress gets the most recently requested payment address from a wallet.
 // If the address has already been used (there is at least one transaction
-// spending to it in the blockchain or dcrd mempool), the next chained address
+// spending to it in the blockchain or ecrd mempool), the next chained address
 // is returned.
 func (w *Wallet) CurrentAddress(account uint32) (dcrutil.Address, error) {
 	const op errors.Op = "wallet.CurrentAddress"
@@ -2374,7 +2374,7 @@ func (w *Wallet) GetTicketInfoPrecise(ctx context.Context, rpcCaller Caller, has
 	var ticketSummary *TicketSummary
 	var blockHeader *wire.BlockHeader
 
-	rpc := dcrd.New(rpcCaller)
+	rpc := ecrd.New(rpcCaller)
 	err := walletdb.View(ctx, w.db, func(dbtx walletdb.ReadTx) error {
 		txmgrNs := dbtx.ReadBucket(wtxmgrNamespaceKey)
 
@@ -2531,7 +2531,7 @@ func (w *Wallet) GetTicketsPrecise(ctx context.Context, rpcCaller Caller,
 		}
 	}
 
-	rpc := dcrd.New(rpcCaller)
+	rpc := ecrd.New(rpcCaller)
 	err := walletdb.View(ctx, w.db, func(dbtx walletdb.ReadTx) error {
 		txmgrNs := dbtx.ReadBucket(wtxmgrNamespaceKey)
 		header := &wire.BlockHeader{}
@@ -3405,7 +3405,7 @@ func (w *Wallet) StakeInfoPrecise(ctx context.Context, rpcCaller Caller) (*Stake
 	const op errors.Op = "wallet.StakeInfoPrecise"
 
 	res := &StakeInfoData{}
-	rpc := dcrd.New(rpcCaller)
+	rpc := ecrd.New(rpcCaller)
 	var g errgroup.Group
 	g.Go(func() error {
 		unminedTicketCount, err := rpc.MempoolCount(ctx, "tickets")
@@ -3598,12 +3598,12 @@ func (w *Wallet) ResetLockedOutpoints() {
 // LockedOutpoints returns a slice of currently locked outpoints.  This is
 // intended to be used by marshaling the result as a JSON array for
 // listlockunspent RPC results.
-func (w *Wallet) LockedOutpoints() []dcrdtypes.TransactionInput {
+func (w *Wallet) LockedOutpoints() []ecrdtypes.TransactionInput {
 	w.lockedOutpointMu.Lock()
-	locked := make([]dcrdtypes.TransactionInput, len(w.lockedOutpoints))
+	locked := make([]ecrdtypes.TransactionInput, len(w.lockedOutpoints))
 	i := 0
 	for op := range w.lockedOutpoints {
-		locked[i] = dcrdtypes.TransactionInput{
+		locked[i] = ecrdtypes.TransactionInput{
 			Txid: op.Hash.String(),
 			Vout: op.Index,
 		}
@@ -3685,7 +3685,7 @@ func ticketChangeMatured(params *chaincfg.Params, txHeight, curHeight int32) boo
 // ticketMatured returns whether a ticket mined at txHeight has
 // reached ticket maturity in a chain with a tip height curHeight.
 func ticketMatured(params *chaincfg.Params, txHeight, curHeight int32) bool {
-	// dcrd has an off-by-one in the calculation of the ticket
+	// ecrd has an off-by-one in the calculation of the ticket
 	// maturity, which results in maturity being one block higher
 	// than the params would indicate.
 	return txHeight >= 0 && curHeight-txHeight > int32(params.TicketMaturity)

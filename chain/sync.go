@@ -26,13 +26,13 @@ import (
 var requiredAPIVersion = semver{Major: 6, Minor: 0, Patch: 0}
 
 // Syncer implements wallet synchronization services by processing
-// notifications from a dcrd JSON-RPC server.
+// notifications from a ecrd JSON-RPC server.
 type Syncer struct {
 	atomicWalletSynced uint32 // CAS (synced=1) when wallet syncing complete
 
 	wallet   *wallet.Wallet
 	opts     *RPCOptions
-	rpc      *dcrd.RPC
+	rpc      *ecrd.RPC
 	notifier *notifier
 
 	discoverAccts bool
@@ -47,7 +47,7 @@ type Syncer struct {
 }
 
 // RPCOptions specifies the network and security settings for establishing a
-// websocket connection to a dcrd JSON-RPC server.
+// websocket connection to a ecrd JSON-RPC server.
 type RPCOptions struct {
 	Address     string
 	DefaultPort string
@@ -58,7 +58,7 @@ type RPCOptions struct {
 	Insecure    bool
 }
 
-// NewSyncer creates a Syncer that will sync the wallet using dcrd JSON-RPC.
+// NewSyncer creates a Syncer that will sync the wallet using ecrd JSON-RPC.
 func NewSyncer(w *wallet.Wallet, r *RPCOptions) *Syncer {
 	return &Syncer{
 		wallet:        w,
@@ -195,7 +195,7 @@ var hashStop chainhash.Hash
 // Run synchronizes the wallet, returning when synchronization fails or the
 // context is cancelled.  If startupSync is true, all synchronization tasks
 // needed to fully register the wallet for notifications and synchronize it with
-// the dcrd server are performed.  Otherwise, it will listen for notifications
+// the ecrd server are performed.  Otherwise, it will listen for notifications
 // but not register for any updates.
 func (s *Syncer) Run(ctx context.Context) (err error) {
 	defer func() {
@@ -240,7 +240,7 @@ func (s *Syncer) Run(ctx context.Context) (err error) {
 		return err
 	}
 	defer client.Close()
-	s.rpc = dcrd.New(client)
+	s.rpc = ecrd.New(client)
 
 	// Verify that the server is running on the expected network.
 	var netID wire.CurrencyNet
@@ -254,7 +254,7 @@ func (s *Syncer) Run(ctx context.Context) (err error) {
 
 	// Ensure the RPC server has a compatible API version.
 	var api struct {
-		Version semver `json:"dcrdjsonrpcapi"`
+		Version semver `json:"ecrdjsonrpcapi"`
 	}
 	err = s.rpc.Call(ctx, "version", &api)
 	if err != nil {
@@ -567,7 +567,7 @@ func (n *notifier) Close() error {
 }
 
 func (s *Syncer) winningTickets(ctx context.Context, params json.RawMessage) error {
-	block, height, winners, err := dcrd.WinningTickets(params)
+	block, height, winners, err := ecrd.WinningTickets(params)
 	if err != nil {
 		return err
 	}
@@ -575,7 +575,7 @@ func (s *Syncer) winningTickets(ctx context.Context, params json.RawMessage) err
 }
 
 func (s *Syncer) blockConnected(ctx context.Context, params json.RawMessage) error {
-	header, relevant, err := dcrd.BlockConnected(params)
+	header, relevant, err := ecrd.BlockConnected(params)
 	if err != nil {
 		return err
 	}
@@ -629,7 +629,7 @@ func (s *Syncer) blockConnected(ctx context.Context, params json.RawMessage) err
 }
 
 func (s *Syncer) relevantTxAccepted(ctx context.Context, params json.RawMessage) error {
-	tx, err := dcrd.RelevantTxAccepted(params)
+	tx, err := ecrd.RelevantTxAccepted(params)
 	if err != nil {
 		return err
 	}
@@ -637,7 +637,7 @@ func (s *Syncer) relevantTxAccepted(ctx context.Context, params json.RawMessage)
 }
 
 func (s *Syncer) spentAndMissedTickets(ctx context.Context, params json.RawMessage) error {
-	missed, err := dcrd.MissedTickets(params)
+	missed, err := ecrd.MissedTickets(params)
 	if err != nil {
 		return err
 	}
