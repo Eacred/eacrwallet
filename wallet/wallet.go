@@ -31,7 +31,7 @@ import (
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/eacrwallet/deployments"
 	"github.com/Eacred/eacrwallet/errors"
-	"github.com/Eacred/eacrwallet/rpc/client/dcrd"
+	"github.com/Eacred/eacrwallet/rpc/client/ecrd"
 	"github.com/Eacred/eacrwallet/rpc/jsonrpc/types"
 	"github.com/Eacred/eacrwallet/wallet/internal/compat"
 	"github.com/Eacred/eacrwallet/wallet/txrules"

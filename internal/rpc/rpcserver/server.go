@@ -45,7 +45,7 @@ import (
 	"github.com/Eacred/eacrwallet/internal/loader"
 	"github.com/Eacred/eacrwallet/internal/netparams"
 	"github.com/Eacred/eacrwallet/p2p"
-	"github.com/Eacred/eacrwallet/rpc/client/dcrd"
+	"github.com/Eacred/eacrwallet/rpc/client/ecrd"
 	pb "github.com/Eacred/eacrwallet/rpc/walletrpc"
 	"github.com/Eacred/eacrwallet/spv"
 	"github.com/Eacred/eacrwallet/ticketbuyer"

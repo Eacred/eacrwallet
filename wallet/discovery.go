@@ -16,7 +16,7 @@ import (
 	hd "github.com/Eacred/eacrd/hdkeychain"
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/eacrwallet/errors"
-	"github.com/Eacred/eacrwallet/rpc/client/dcrd"
+	"github.com/Eacred/eacrwallet/rpc/client/ecrd"
 	"github.com/Eacred/eacrwallet/validate"
 	"github.com/Eacred/eacrwallet/wallet/udb"
 	"github.com/Eacred/eacrwallet/wallet/walletdb"

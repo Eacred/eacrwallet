@@ -32,7 +32,7 @@ import (
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/eacrwallet/errors"
 	"github.com/Eacred/eacrwallet/p2p"
-	"github.com/Eacred/eacrwallet/rpc/client/dcrd"
+	"github.com/Eacred/eacrwallet/rpc/client/ecrd"
 	"github.com/Eacred/eacrwallet/rpc/jsonrpc/types"
 	"github.com/Eacred/eacrwallet/version"
 	"github.com/Eacred/eacrwallet/wallet"

@@ -15,7 +15,7 @@ import (
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/eacrwallet/errors"
-	"github.com/Eacred/eacrwallet/rpc/client/dcrd"
+	"github.com/Eacred/eacrwallet/rpc/client/ecrd"
 	"github.com/Eacred/eacrwallet/wallet/udb"
 	"github.com/Eacred/eacrwallet/wallet/walletdb"
 	"golang.org/x/sync/errgroup"

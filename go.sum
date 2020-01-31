@@ -52,6 +52,10 @@ github.com/decred/dcrd/chaincfg/chainhash v1.0.1/go.mod h1:OVfvaOsNLS/A1y4Eod0Ip
 github.com/decred/dcrd/chaincfg/chainhash v1.0.2/go.mod h1:BpbrGgrPTr3YJYRN3Bm+D9NuaFd+zGyNeIKgrhCXK60=
 github.com/decred/dcrd/crypto/blake256 v1.0.0/go.mod h1:sQl2p6Y26YV+ZOcSTP6thNdn47hh8kt6rqSlvmrXFAc=
 github.com/decred/dcrd/wire v1.2.0/go.mod h1:/JKOsLInOJu6InN+/zH5AyCq3YDIOW/EqcffvU8fJHM=
+github.com/decred/ecrd/chaincfg/chainhash v1.0.1/go.mod h1:OVfvaOsNLS/A1y4Eod0Ip/Lf8qga7VXCQjUQLbkY0Go=
+github.com/decred/ecrd/chaincfg/chainhash v1.0.2/go.mod h1:BpbrGgrPTr3YJYRN3Bm+D9NuaFd+zGyNeIKgrhCXK60=
+github.com/decred/ecrd/crypto/blake256 v1.0.0/go.mod h1:sQl2p6Y26YV+ZOcSTP6thNdn47hh8kt6rqSlvmrXFAc=
+github.com/decred/ecrd/wire v1.2.0/go.mod h1:/JKOsLInOJu6InN+/zH5AyCq3YDIOW/EqcffvU8fJHM=
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/protoc-gen-validate v0.1.0/go.mod h1:iSmxcyjqTsJpI2R4NaDN7+kN2VEUnK/pcBlmesArF7c=
 github.com/fsnotify/fsnotify v1.4.7 h1:IXs+QLmnXW2CcXuY+8Mzv/fWEsPGWxqefPtCP5CnV9I=
