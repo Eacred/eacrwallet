@@ -30,13 +30,10 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/Eacred/eacrwallet/internal/cfgutil"
-	"github.com/Eacred/eacrwallet/internal/loader"
-	"github.com/Eacred/eacrwallet/internal/netparams"
 	"github.com/Eacred/eacrd/addrmgr"
 	"github.com/Eacred/eacrd/blockchain/stake"
-	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/chaincfg"
+	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/dcrec"
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/hdkeychain"
@@ -44,6 +41,9 @@ import (
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/eacrwallet/chain"
 	"github.com/Eacred/eacrwallet/errors"
+	"github.com/Eacred/eacrwallet/internal/cfgutil"
+	"github.com/Eacred/eacrwallet/internal/loader"
+	"github.com/Eacred/eacrwallet/internal/netparams"
 	"github.com/Eacred/eacrwallet/p2p"
 	"github.com/Eacred/eacrwallet/rpc/client/dcrd"
 	pb "github.com/Eacred/eacrwallet/rpc/walletrpc"
@@ -2475,7 +2475,7 @@ func (s *loaderServer) RpcSync(req *pb.RpcSyncRequest, svr pb.WalletLoaderServic
 		if svr.Context().Err() != nil {
 			return status.Errorf(codes.Canceled, "Wallet synchronization canceled: %v", err)
 		}
-		return status.Errorf(codes.Unknown, "Wallet synchronization stopped: %v", err)
+		return status.Errorf(codes.Unknown, "Wallet synchronization stopped:: %v", err)
 	}
 
 	return nil
