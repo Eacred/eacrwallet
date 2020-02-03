@@ -35,14 +35,14 @@ func main() {
 
 	cn := primaryHarness.RPCConfig()
 	nodeCertFile := primaryHarness.RPCCertFile()
-	fmt.Println("Command for node's dcrctl:")
-	fmt.Printf("\tdcrctl -u %s -P %s -s %s -c %s\n", cn.User, cn.Pass,
+	fmt.Println("Command for node's eacrctl:")
+	fmt.Printf("\teacrctl -u %s -P %s -s %s -c %s\n", cn.User, cn.Pass,
 		cn.Host, nodeCertFile)
 
 	cw := primaryHarness.RPCWalletConfig()
 	walletCertFile := primaryHarness.RPCWalletCertFile()
-	fmt.Println("Command for wallet's dcrctl:")
-	fmt.Printf("\tdcrctl -u %s -P %s -s %s -c %s --wallet\n", cw.User, cw.Pass,
+	fmt.Println("Command for wallet's eacrctl:")
+	fmt.Printf("\teacrctl -u %s -P %s -s %s -c %s --wallet\n", cw.User, cw.Pass,
 		cw.Host, walletCertFile)
 
 	fmt.Print("Press Enter to terminate harness.")

@@ -42,7 +42,7 @@ type configJSON struct {
 	TxFee         int64  `json:"txfee"`
 	SendToAddress string `json:"sendtoaddress"`
 	Network       string `json:"network"`
-	DcrctlArgs    string `json:"dcrctlargs"`
+	EacrctlArgs    string `json:"eacrctlargs"`
 }
 
 func saneOutputValue(amount dcrutil.Amount) bool {
@@ -208,8 +208,8 @@ func main() {
 
 	// The command to sign the transaction.
 	var buf bytes.Buffer
-	buf.WriteString("dcrctl ")
-	buf.WriteString(cfg.DcrctlArgs)
+	buf.WriteString("eacrctl ")
+	buf.WriteString(cfg.EacrctlArgs)
 	buf.WriteString(" signrawtransaction ")
 	buf.WriteString(hex.EncodeToString(txB))
 	buf.WriteString(" '[")
