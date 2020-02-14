@@ -44,7 +44,7 @@ const (
 	// maxStandardTxSize is the maximum size allowed for transactions that
 	// are considered standard and will therefore be relayed and considered
 	// for mining.
-	// TODO: import from ecrd.
+	// TODO: import from eacrd.
 	maxStandardTxSize = 100000
 
 	// sanityVerifyFlags are the flags used to enable and disable features of
@@ -624,7 +624,7 @@ func (w *Wallet) txToMultisigInternal(ctx context.Context, op errors.Op, dbtx wa
 		return txToMultisigError(errors.E(op, err))
 	}
 
-	// Request updates from ecrd for new transactions sent to this
+	// Request updates from eacrd for new transactions sent to this
 	// script hash address.
 	err = n.LoadTxFilter(ctx, false, []dcrutil.Address{scAddr}, nil)
 	if err != nil {

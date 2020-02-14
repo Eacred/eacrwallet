@@ -11,11 +11,11 @@ import (
 	"github.com/Eacred/eacrd/blockchain/stake"
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
 	"github.com/Eacred/eacrd/dcrutil"
-	ecrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
+	eacrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/eacrwallet/errors"
-	"github.com/Eacred/eacrwallet/rpc/client/ecrd"
+	"github.com/Eacred/eacrwallet/rpc/client/eacrd"
 	"github.com/Eacred/eacrwallet/wallet/udb"
 	"github.com/Eacred/eacrwallet/wallet/walletdb"
 	"golang.org/x/sync/errgroup"
@@ -113,9 +113,9 @@ func (w *Wallet) LiveTicketHashes(ctx context.Context, rpcCaller Caller, include
 	}
 
 	// Determine if the extra tickets are immature or possibly live.  Because
-	// these transactions are not part of the wallet's transaction history, ecrd
+	// these transactions are not part of the wallet's transaction history, eacrd
 	// must be queried for their blockchain height.  This functionality requires
-	// the ecrd transaction index to be enabled.
+	// the eacrd transaction index to be enabled.
 	var g errgroup.Group
 	type extraTicketResult struct {
 		valid  bool // unspent with known height
@@ -127,7 +127,7 @@ func (w *Wallet) LiveTicketHashes(ctx context.Context, rpcCaller Caller, include
 		g.Go(func() error {
 			// gettxout is used first as an optimization to check that output 0
 			// of the ticket is unspent.
-			var txOut *ecrdtypes.GetTxOutResult
+			var txOut *eacrdtypes.GetTxOutResult
 			err := rpcCaller.Call(ctx, "gettxout", &txOut, extraTickets[i].String(), 0)
 			if err != nil || txOut == nil {
 				return nil
@@ -172,7 +172,7 @@ func (w *Wallet) LiveTicketHashes(ctx context.Context, rpcCaller Caller, include
 	}
 
 	// Use RPC to query which of the possibly-live tickets are really live.
-	rpc := ecrd.New(rpcCaller)
+	rpc := eacrd.New(rpcCaller)
 	live, err := rpc.ExistsLiveTickets(ctx, maybeLive)
 	if err != nil {
 		return nil, errors.E(op, err)
@@ -299,7 +299,7 @@ func (w *Wallet) RevokeTickets(ctx context.Context, rpcCaller Caller) error {
 	for i := range ticketHashes {
 		ticketHashPtrs[i] = &ticketHashes[i]
 	}
-	rpc := ecrd.New(rpcCaller)
+	rpc := eacrd.New(rpcCaller)
 	expired, missed, err := rpc.ExistsExpiredMissedTickets(ctx, ticketHashPtrs)
 	if err != nil {
 		return errors.E(op, err)

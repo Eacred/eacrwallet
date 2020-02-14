@@ -27,12 +27,12 @@ import (
 	"github.com/Eacred/eacrd/dcrjson"
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/hdkeychain"
-	ecrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
+	eacrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/eacrwallet/errors"
 	"github.com/Eacred/eacrwallet/p2p"
-	"github.com/Eacred/eacrwallet/rpc/client/ecrd"
+	"github.com/Eacred/eacrwallet/rpc/client/eacrd"
 	"github.com/Eacred/eacrwallet/rpc/jsonrpc/types"
 	"github.com/Eacred/eacrwallet/version"
 	"github.com/Eacred/eacrwallet/wallet"
@@ -199,9 +199,9 @@ func lazyApplyHandler(s *Server, ctx context.Context, request *dcrjson.Request) 
 			if !ok {
 				return nil, errRPCClientNotConnected
 			}
-			rpc, ok := n.(*ecrd.RPC)
+			rpc, ok := n.(*eacrd.RPC)
 			if !ok {
-				return nil, rpcErrorf(dcrjson.ErrRPCClientNotConnected, "RPC passthrough requires ecrd RPC synchronization")
+				return nil, rpcErrorf(dcrjson.ErrRPCClientNotConnected, "RPC passthrough requires eacrd RPC synchronization")
 			}
 			var resp json.RawMessage
 			var params = make([]interface{}, len(request.Params))
@@ -608,7 +608,7 @@ func (s *Server) createMultiSig(ctx context.Context, icmd interface{}) (interfac
 
 // createRawTransaction handles createrawtransaction commands.
 func (s *Server) createRawTransaction(ctx context.Context, icmd interface{}) (interface{}, error) {
-	cmd := icmd.(*ecrdtypes.CreateRawTransactionCmd)
+	cmd := icmd.(*eacrdtypes.CreateRawTransactionCmd)
 
 	// Validate expiry, if given.
 	if cmd.Expiry != nil && *cmd.Expiry < 0 {
@@ -970,7 +970,7 @@ func (s *Server) getBestBlock(ctx context.Context, icmd interface{}) (interface{
 	}
 
 	hash, height := w.MainChainTip(ctx)
-	result := &ecrdtypes.GetBestBlockResult{
+	result := &eacrdtypes.GetBestBlockResult{
 		Hash:   hash.String(),
 		Height: int64(height),
 	}
@@ -1004,7 +1004,7 @@ func (s *Server) getBlockCount(ctx context.Context, icmd interface{}) (interface
 // getBlockHash handles a getblockhash request by returning the main chain hash
 // for a block at some height.
 func (s *Server) getBlockHash(ctx context.Context, icmd interface{}) (interface{}, error) {
-	cmd := icmd.(*ecrdtypes.GetBlockHashCmd)
+	cmd := icmd.(*eacrdtypes.GetBlockHashCmd)
 	w, ok := s.walletLoader.LoadedWallet()
 	if !ok {
 		return nil, errUnloadedWallet
@@ -1071,8 +1071,8 @@ func (s *Server) getInfo(ctx context.Context, icmd interface{}) (interface{}, er
 	}
 
 	n, _ := s.walletLoader.NetworkBackend()
-	if rpc, ok := n.(*ecrd.RPC); ok {
-		var consensusInfo ecrdtypes.InfoChainResult
+	if rpc, ok := n.(*eacrd.RPC); ok {
+		var consensusInfo eacrdtypes.InfoChainResult
 		err := rpc.Call(ctx, "getinfo", &consensusInfo)
 		if err != nil {
 			return nil, err
@@ -1145,7 +1145,7 @@ func (s *Server) getAccount(ctx context.Context, icmd interface{}) (interface{},
 
 // getAccountAddress handles a getaccountaddress by returning the most
 // recently-created chained address that has not yet been used (does not yet
-// appear in the blockchain, or any tx that has arrived in the ecrd mempool).
+// appear in the blockchain, or any tx that has arrived in the eacrd mempool).
 // If the most recently-requested address has been used, a new address (the
 // next chained address in the keypool) is used.  This can fail if the keypool
 // runs out (and will return dcrjson.ErrRPCWalletKeypoolRanOut if that happens).
@@ -1617,9 +1617,9 @@ func (s *Server) getStakeInfo(ctx context.Context, icmd interface{}) (interface{
 		return nil, errUnloadedWallet
 	}
 
-	var rpc *ecrd.RPC
+	var rpc *eacrd.RPC
 	n, _ := s.walletLoader.NetworkBackend()
-	if client, ok := n.(*ecrd.RPC); ok {
+	if client, ok := n.(*eacrd.RPC); ok {
 		rpc = client
 	}
 	var sinfo *wallet.StakeInfoData
@@ -1685,7 +1685,7 @@ func (s *Server) getTickets(ctx context.Context, icmd interface{}) (interface{},
 	}
 
 	n, _ := s.walletLoader.NetworkBackend()
-	rpc, ok := n.(*ecrd.RPC)
+	rpc, ok := n.(*eacrd.RPC)
 	if !ok {
 		return nil, errRPCClientNotConnected
 	}
@@ -1870,13 +1870,13 @@ var helpDescsMu sync.Mutex // Help may execute concurrently, so synchronize acce
 // and this is simply a helper function for the HelpNoChainRPC and
 // HelpWithChainRPC handlers.
 func (s *Server) help(ctx context.Context, icmd interface{}) (interface{}, error) {
-	cmd := icmd.(*ecrdtypes.HelpCmd)
+	cmd := icmd.(*eacrdtypes.HelpCmd)
 	// TODO: The "help" RPC should use a HTTP POST client when calling down to
-	// ecrd for additional help methods.  This avoids including websocket-only
+	// eacrd for additional help methods.  This avoids including websocket-only
 	// requests in the help, which are not callable by wallet JSON-RPC clients.
-	var rpc *ecrd.RPC
+	var rpc *eacrd.RPC
 	n, _ := s.walletLoader.NetworkBackend()
-	if client, ok := n.(*ecrd.RPC); ok {
+	if client, ok := n.(*eacrd.RPC); ok {
 		rpc = client
 	}
 	if cmd.Command == nil || *cmd.Command == "" {
@@ -2697,7 +2697,7 @@ func (s *Server) revokeTickets(ctx context.Context, icmd interface{}) (interface
 	if !ok {
 		return nil, errNoNetwork
 	}
-	if rpc, ok := n.(*ecrd.RPC); ok {
+	if rpc, ok := n.(*eacrd.RPC); ok {
 		err := w.RevokeTickets(ctx, rpc)
 		return nil, err
 	}
@@ -2770,7 +2770,7 @@ func (s *Server) stakePoolUserInfo(ctx context.Context, icmd interface{}) (inter
 // address. It will only return tickets that are in the mempool or blockchain,
 // and should not return pruned tickets.
 func (s *Server) ticketsForAddress(ctx context.Context, icmd interface{}) (interface{}, error) {
-	cmd := icmd.(*ecrdtypes.TicketsForAddressCmd)
+	cmd := icmd.(*eacrdtypes.TicketsForAddressCmd)
 	w, ok := s.walletLoader.LoadedWallet()
 	if !ok {
 		return nil, errUnloadedWallet
@@ -2791,7 +2791,7 @@ func (s *Server) ticketsForAddress(ctx context.Context, icmd interface{}) (inter
 		ticketHashStrs = append(ticketHashStrs, hash.String())
 	}
 
-	return ecrdtypes.TicketsForAddressResult{Tickets: ticketHashStrs}, nil
+	return eacrdtypes.TicketsForAddressResult{Tickets: ticketHashStrs}, nil
 }
 
 func isNilOrEmpty(s *string) bool {
@@ -3126,7 +3126,7 @@ func (s *Server) signRawTransaction(ctx context.Context, icmd interface{}) (inte
 		return nil, rpcErrorf(dcrjson.ErrRPCInvalidParameter, "invalid sighash flag")
 	}
 
-	// TODO: really we probably should look these up with ecrd anyway to
+	// TODO: really we probably should look these up with eacrd anyway to
 	// make sure that they match the blockchain if present.
 	inputs := make(map[wire.OutPoint][]byte)
 	scripts := make(map[string][]byte)
@@ -3177,14 +3177,14 @@ func (s *Server) signRawTransaction(ctx context.Context, icmd interface{}) (inte
 	}
 
 	// Now we go and look for any inputs that we were not provided by
-	// querying ecrd with getrawtransaction. We queue up a bunch of async
+	// querying eacrd with getrawtransaction. We queue up a bunch of async
 	// requests and will wait for replies after we have checked the rest of
 	// the arguments.
-	requested := make(map[wire.OutPoint]*ecrdtypes.GetTxOutResult)
+	requested := make(map[wire.OutPoint]*eacrdtypes.GetTxOutResult)
 	var requestedMu sync.Mutex
 	requestedGroup, gctx := errgroup.WithContext(ctx)
 	n, _ := s.walletLoader.NetworkBackend()
-	if rpc, ok := n.(*ecrd.RPC); ok {
+	if rpc, ok := n.(*eacrd.RPC); ok {
 		for i, txIn := range tx.TxIn {
 			// We don't need the first input of a stakebase tx, as it's garbage
 			// anyway.
@@ -3204,10 +3204,10 @@ func (s *Server) signRawTransaction(ctx context.Context, icmd interface{}) (inte
 				index := txIn.PreviousOutPoint.Index
 				// gettxout returns null without error if the output exists
 				// but is spent.  A double pointer is used to handle this case.
-				var res *ecrdtypes.GetTxOutResult
+				var res *eacrdtypes.GetTxOutResult
 				err := rpc.Call(gctx, "gettxout", &res, hash, index, true)
 				if err != nil {
-					return errors.E(errors.Op("ecrd.jsonrpc.gettxout"), err)
+					return errors.E(errors.Op("eacrd.jsonrpc.gettxout"), err)
 				}
 				requestedMu.Lock()
 				requested[txIn.PreviousOutPoint] = res
@@ -3503,7 +3503,7 @@ func (s *Server) sweepAccount(ctx context.Context, icmd interface{}) (interface{
 
 // validateAddress handles the validateaddress command.
 func (s *Server) validateAddress(ctx context.Context, icmd interface{}) (interface{}, error) {
-	cmd := icmd.(*ecrdtypes.ValidateAddressCmd)
+	cmd := icmd.(*eacrdtypes.ValidateAddressCmd)
 	w, ok := s.walletLoader.LoadedWallet()
 	if !ok {
 		return nil, errUnloadedWallet
@@ -3601,7 +3601,7 @@ func (s *Server) validateAddress(ctx context.Context, icmd interface{}) (interfa
 // verifyMessage handles the verifymessage command by verifying the provided
 // compact signature for the given address and message.
 func (s *Server) verifyMessage(ctx context.Context, icmd interface{}) (interface{}, error) {
-	cmd := icmd.(*ecrdtypes.VerifyMessageCmd)
+	cmd := icmd.(*eacrdtypes.VerifyMessageCmd)
 
 	var valid bool
 
@@ -3641,16 +3641,16 @@ WrongAddrKind:
 // with the server.  The chainClient is optional, and this is simply a helper
 // function for the versionWithChainRPC and versionNoChainRPC handlers.
 func (s *Server) version(ctx context.Context, icmd interface{}) (interface{}, error) {
-	resp := make(map[string]ecrdtypes.VersionResult)
+	resp := make(map[string]eacrdtypes.VersionResult)
 	n, _ := s.walletLoader.NetworkBackend()
-	if rpc, ok := n.(*ecrd.RPC); ok {
+	if rpc, ok := n.(*eacrd.RPC); ok {
 		err := rpc.Call(ctx, "version", &resp)
 		if err != nil {
 			return nil, err
 		}
 	}
 
-	resp["eacrwalletjsonrpcapi"] = ecrdtypes.VersionResult{
+	resp["eacrwalletjsonrpcapi"] = eacrdtypes.VersionResult{
 		VersionString: jsonrpcSemverString,
 		Major:         jsonrpcSemverMajor,
 		Minor:         jsonrpcSemverMinor,
@@ -3671,7 +3671,7 @@ func (s *Server) walletInfo(ctx context.Context, icmd interface{}) (interface{},
 	n, err := w.NetworkBackend()
 	connected := err == nil
 	if connected {
-		if rpc, ok := n.(*ecrd.RPC); ok {
+		if rpc, ok := n.(*eacrd.RPC); ok {
 			err := rpc.Call(ctx, "ping", nil)
 			if ctx.Err() != nil {
 				return nil, ctx.Err()

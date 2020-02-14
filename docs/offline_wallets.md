@@ -31,7 +31,7 @@ losing other funds from the cold wallet.
 
 A tool has been created to help easily move offline funds on *nix machines. 
 This tool is located in cmd/movefunds and can be installed as follows, 
-granted that ecrd and eacrwallet are installed and vendored dependencies 
+granted that eacrd and eacrwallet are installed and vendored dependencies 
 are up to date with dep:
 
 ```

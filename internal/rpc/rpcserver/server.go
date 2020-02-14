@@ -45,7 +45,7 @@ import (
 	"github.com/Eacred/eacrwallet/internal/loader"
 	"github.com/Eacred/eacrwallet/internal/netparams"
 	"github.com/Eacred/eacrwallet/p2p"
-	"github.com/Eacred/eacrwallet/rpc/client/ecrd"
+	"github.com/Eacred/eacrwallet/rpc/client/eacrd"
 	pb "github.com/Eacred/eacrwallet/rpc/walletrpc"
 	"github.com/Eacred/eacrwallet/spv"
 	"github.com/Eacred/eacrwallet/ticketbuyer"
@@ -150,7 +150,7 @@ type walletServer struct {
 }
 
 // loaderServer provides RPC clients with the ability to load and close wallets,
-// as well as establishing a RPC connection to a ecrd consensus server.
+// as well as establishing a RPC connection to a eacrd consensus server.
 type loaderServer struct {
 	ready     uint32 // atomic
 	loader    *loader.Loader
@@ -658,9 +658,9 @@ func (s *walletServer) TicketPrice(ctx context.Context, req *pb.TicketPriceReque
 }
 
 func (s *walletServer) StakeInfo(ctx context.Context, req *pb.StakeInfoRequest) (*pb.StakeInfoResponse, error) {
-	var rpc *ecrd.RPC
+	var rpc *eacrd.RPC
 	n, _ := s.wallet.NetworkBackend()
-	if client, ok := n.(*ecrd.RPC); ok {
+	if client, ok := n.(*eacrd.RPC); ok {
 		rpc = client
 	}
 	var si *wallet.StakeInfoData
@@ -1202,11 +1202,11 @@ func (s *walletServer) GetTicket(ctx context.Context, req *pb.GetTicketRequest) 
 		return nil, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	// The ecrd client could be nil here if the network backend is not
+	// The eacrd client could be nil here if the network backend is not
 	// the consensus rpc client.  This is fine since the chain client is
 	// optional.
 	n, _ := s.wallet.NetworkBackend()
-	rpc, _ := n.(*ecrd.RPC)
+	rpc, _ := n.(*eacrd.RPC)
 
 	var ticketSummary *wallet.TicketSummary
 	var blockHeader *wire.BlockHeader
@@ -1292,7 +1292,7 @@ func (s *walletServer) GetTickets(req *pb.GetTicketsRequest,
 	}
 	n, _ := s.wallet.NetworkBackend()
 	var err error
-	if rpc, ok := n.(*ecrd.RPC); ok {
+	if rpc, ok := n.(*eacrd.RPC); ok {
 		err = s.wallet.GetTicketsPrecise(ctx, rpc, rangeFn, startBlock, endBlock)
 	} else {
 		err = s.wallet.GetTickets(ctx, rangeFn, startBlock, endBlock)
@@ -1636,7 +1636,7 @@ func (s *walletServer) RevokeTickets(ctx context.Context, req *pb.RevokeTicketsR
 	// tickets were missed.  RevokeExpiredTickets is only able to create
 	// revocations for tickets which have reached their expiry time even if they
 	// were missed prior to expiry, but is able to be used with other backends.
-	if rpc, ok := n.(*ecrd.RPC); ok {
+	if rpc, ok := n.(*eacrd.RPC); ok {
 		err := s.wallet.RevokeTickets(ctx, rpc)
 		if err != nil {
 			return nil, translateError(err)

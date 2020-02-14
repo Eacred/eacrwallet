@@ -16,7 +16,7 @@ import (
 	hd "github.com/Eacred/eacrd/hdkeychain"
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/eacrwallet/errors"
-	"github.com/Eacred/eacrwallet/rpc/client/ecrd"
+	"github.com/Eacred/eacrwallet/rpc/client/eacrd"
 	"github.com/Eacred/eacrwallet/validate"
 	"github.com/Eacred/eacrwallet/wallet/udb"
 	"github.com/Eacred/eacrwallet/wallet/walletdb"
@@ -557,10 +557,10 @@ func (w *Wallet) findLastUsedAccount(ctx context.Context, p Peer, blockCache blo
 }
 
 // existsAddrIndexFinder implements address and account discovery using the
-// exists address index of a trusted ecrd RPC server.
+// exists address index of a trusted eacrd RPC server.
 type existsAddrIndexFinder struct {
 	wallet *Wallet
-	rpc    *ecrd.RPC
+	rpc    *eacrd.RPC
 }
 
 func (f *existsAddrIndexFinder) findLastUsedAccount(ctx context.Context, coinTypeXpriv *hd.ExtendedKey) (uint32, error) {
@@ -729,10 +729,10 @@ func (f *existsAddrIndexFinder) find(ctx context.Context, finder *addrFinder) er
 	return g.Wait()
 }
 
-func rpcFromPeer(p Peer) (*ecrd.RPC, bool) {
+func rpcFromPeer(p Peer) (*eacrd.RPC, bool) {
 	switch p := p.(type) {
 	case Caller:
-		return ecrd.New(p), true
+		return eacrd.New(p), true
 	default:
 		return nil, false
 	}

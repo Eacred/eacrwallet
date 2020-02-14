@@ -23,7 +23,7 @@ import (
 	"github.com/Eacred/eacrwallet/internal/loader"
 	"github.com/Eacred/eacrd/chaincfg"
 	"github.com/Eacred/eacrd/dcrjson"
-	ecrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
+	eacrdtypes "github.com/Eacred/eacrd/rpc/jsonrpc/types"
 	"github.com/Eacred/eacrwallet/errors"
 	"github.com/Eacred/eacrwallet/rpc/jsonrpc/types"
 	"github.com/gorilla/websocket"
@@ -233,7 +233,7 @@ func (s *Server) Stop() {
 
 // handlerClosure creates a closure function for handling requests of the given
 // method.  This may be a request that is handled directly by eacrwallet, or
-// a chain server request that is handled by passing the request down to ecrd.
+// a chain server request that is handled by passing the request down to eacrd.
 //
 // NOTE: These handlers do not handle special cases, such as the authenticate
 // method.  Each of these must be checked beforehand (the method is already
@@ -309,7 +309,7 @@ func (s *Server) invalidAuth(req *dcrjson.Request) bool {
 	if err != nil {
 		return false
 	}
-	authCmd, ok := cmd.(*ecrdtypes.AuthenticateCmd)
+	authCmd, ok := cmd.(*eacrdtypes.AuthenticateCmd)
 	if !ok {
 		return false
 	}

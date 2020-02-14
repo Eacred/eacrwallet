@@ -18,7 +18,7 @@ import (
 	"github.com/Eacred/eacrd/txscript"
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/eacrwallet/errors"
-	"github.com/Eacred/eacrwallet/rpc/client/ecrd"
+	"github.com/Eacred/eacrwallet/rpc/client/eacrd"
 	"github.com/Eacred/eacrwallet/wallet/udb"
 	"github.com/Eacred/eacrwallet/wallet/walletdb"
 )
@@ -177,7 +177,7 @@ func makeTxSummary(dbtx walletdb.ReadTx, w *Wallet, details *udb.TxDetails) Tran
 	}
 }
 
-func makeTicketSummary(ctx context.Context, rpc *ecrd.RPC, dbtx walletdb.ReadTx, w *Wallet, details *udb.TicketDetails) *TicketSummary {
+func makeTicketSummary(ctx context.Context, rpc *eacrd.RPC, dbtx walletdb.ReadTx, w *Wallet, details *udb.TicketDetails) *TicketSummary {
 	var ticketStatus = TicketStatusLive
 
 	ticketTransactionDetails := makeTxSummary(dbtx, w, details.Ticket)

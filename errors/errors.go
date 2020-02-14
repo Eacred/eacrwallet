@@ -72,7 +72,7 @@ const (
 	Consensus                       // Consensus violation
 	DoubleSpend                     // Transaction is a double spend
 	Protocol                        // Protocol violation
-	NoPeers                         // Eacred network is unreachable due to lack of peers or ecrd RPC connections
+	NoPeers                         // Eacred network is unreachable due to lack of peers or eacrd RPC connections
 	Deployment                      // Inactive consensus deployment
 )
 
