@@ -10,6 +10,8 @@ github.com/Eacred/eacrd v0.0.0-20200130225131-86d11748c652 h1:n6RA3GcJ+GueYUR/tQ
 github.com/Eacred/eacrd v0.0.0-20200130225131-86d11748c652/go.mod h1:JEb1izmtgf1vZRS0E6sdtPaBL3KgMRg+5EEsh6XQ+f0=
 github.com/Eacred/eacrd v0.0.0-20200203114315-c27d63c22aeb h1:867KgZN5C8KF45WvfKly64kc6+ZQdRXusuwSZBbCo90=
 github.com/Eacred/eacrd v0.0.0-20200203114315-c27d63c22aeb/go.mod h1:o2Dbv4NBa/1Dd2qKeBhfiqmMAoC8CbuSp0c7nBEnkMk=
+github.com/Eacred/eacrd v0.0.0-20200213235559-e400ba00f559 h1:cwVXuctmhjlRdjTrp+aP0AL9s//IxeQ5jOLHrBVoKak=
+github.com/Eacred/eacrd v0.0.0-20200213235559-e400ba00f559/go.mod h1:HLMTHjy0i0hSlkHGiQSyUIqTreBGDb+D+BoSlg5/hRI=
 github.com/Eacred/eacrd/chaincfg/chainhash v1.0.5 h1:NpwmWT/mzHDh9FkZbY5krW16ySLqtUSjc5m2AhrMYO8=
 github.com/Eacred/eacrd/chaincfg/chainhash v1.0.5 h1:NpwmWT/mzHDh9FkZbY5krW16ySLqtUSjc5m2AhrMYO8=
 github.com/Eacred/eacrd/chaincfg/chainhash v1.0.5/go.mod h1:i7J8YxTjTAq3x/1ERZbp2fNtqhqhWzENkFcO9PRDBt8=
@@ -25,8 +27,11 @@ github.com/Eacred/eacrd/wire v1.3.2 h1:jeMA6O3HwmE34HMQKGe274O3AVNeNbd9gUwVVeQ80
 github.com/Eacred/eacrd/wire v1.3.2/go.mod h1:CJv9fWPOf8JdaNjL7bPn0X4uDKCMVAOF6oZ0TzQTxxg=
 github.com/Eacred/eacrd/wire v1.3.2/go.mod h1:CJv9fWPOf8JdaNjL7bPn0X4uDKCMVAOF6oZ0TzQTxxg=
 github.com/Eacred/eacrwallet v0.0.0-20200130085721-a8bc15909293/go.mod h1:wMHKIbXiAhV63MphoLgu9p2hfUSf3RQecmFCNTLFVpg=
+github.com/Eacred/ecrd/chaincfg/chainhash v1.0.5 h1:NpwmWT/mzHDh9FkZbY5krW16ySLqtUSjc5m2AhrMYO8=
 github.com/Eacred/ecrd/chaincfg/chainhash v1.0.5/go.mod h1:i7J8YxTjTAq3x/1ERZbp2fNtqhqhWzENkFcO9PRDBt8=
+github.com/Eacred/ecrd/crypto/blake256 v1.0.1 h1:Kj/60+OXORp0N//y/1T3wcsv3bPCZ4dnGtB2BKQYW58=
 github.com/Eacred/ecrd/crypto/blake256 v1.0.1/go.mod h1:wOA/ZHrOiqLse2DmPGPhFKhTeSp+RY+rruBzLI3fe+Q=
+github.com/Eacred/ecrd/wire v1.3.2 h1:jeMA6O3HwmE34HMQKGe274O3AVNeNbd9gUwVVeQ80mo=
 github.com/Eacred/ecrd/wire v1.3.2/go.mod h1:CJv9fWPOf8JdaNjL7bPn0X4uDKCMVAOF6oZ0TzQTxxg=
 github.com/Eacred/ecrwallet/rpc/jsonrpc/types v1.4.4/go.mod h1:jWtL5EinZCVimq5EfXc35sZe4JzVCuPDoIW7kzmzLGI=
 github.com/Eacred/go-socks v1.1.1 h1:YIxpynZ6S8m5grSsw4GOTJnRas9x9sGR8ucb5sxiIA8=
@@ -117,6 +122,8 @@ golang.org/x/crypto v0.0.0-20190820162420-60c769a6c586 h1:7KByu05hhLed2MO29w7p1X
 golang.org/x/crypto v0.0.0-20190820162420-60c769a6c586/go.mod h1:yigFU9vqHzYiE8UmvKecakEJjdnWj3jj499lnFckfCI=
 golang.org/x/crypto v0.0.0-20200128174031-69ecbb4d6d5d h1:9FCpayM9Egr1baVnV1SX0H87m+XB0B8S0hAMi99X/3U=
 golang.org/x/crypto v0.0.0-20200128174031-69ecbb4d6d5d/go.mod h1:LzIPMQfyMNhhGPhUkYOs5KpL4U8rLKemX1yGLhDgUto=
+golang.org/x/crypto v0.0.0-20200210222208-86ce3cb69678 h1:wCWoJcFExDgyYx2m2hpHgwz8W3+FPdfldvIgzqDIhyg=
+golang.org/x/crypto v0.0.0-20200210222208-86ce3cb69678/go.mod h1:LzIPMQfyMNhhGPhUkYOs5KpL4U8rLKemX1yGLhDgUto=
 golang.org/x/exp v0.0.0-20190121172915-509febef88a4/go.mod h1:CJ0aWSM057203Lf6IL+f9T1iT9GByDxfZKAQTCR3kQA=
 golang.org/x/lint v0.0.0-20181026193005-c67002cb31c3/go.mod h1:UVdnD1Gm6xHRNCYTkRU2/jEulfH38KcIWyp/GAMgvoE=
 golang.org/x/lint v0.0.0-20190227174305-5b3e6a55c961/go.mod h1:wehouNa3lNwaWXcvxsM5YxQ5yQlVC4a0KAMCusXpPoU=
@@ -181,6 +188,8 @@ google.golang.org/grpc v1.22.0/go.mod h1:Y5yQAOtifL1yxbo5wqy6BxZv8vAUGQwXBOALyac
 google.golang.org/grpc v1.23.0/go.mod h1:Y5yQAOtifL1yxbo5wqy6BxZv8vAUGQwXBOALyacEbxg=
 google.golang.org/grpc v1.27.0 h1:rRYRFMVgRv6E0D70Skyfsr28tDXIuuPZyWGMPdMcnXg=
 google.golang.org/grpc v1.27.0/go.mod h1:qbnxyOmOxrQa7FizSgH+ReBfzJrCY1pSN7KXBS8abTk=
+google.golang.org/grpc v1.27.1 h1:zvIju4sqAGvwKspUQOhwnpcqSbzi7/H6QomNNjTL4sk=
+google.golang.org/grpc v1.27.1/go.mod h1:qbnxyOmOxrQa7FizSgH+ReBfzJrCY1pSN7KXBS8abTk=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 h1:qIbj1fsPNlZgppZ+VLlY7N33q108Sa+fhmuc+sWQYwY=
