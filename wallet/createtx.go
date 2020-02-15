@@ -14,8 +14,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Eacred/cspp"
-	"github.com/Eacred/cspp/coinjoin"
+	"github.com/Eacred/eacspp"
+	"github.com/Eacred/eacspp/coinjoin"
 	"github.com/Eacred/eacrd/blockchain/stake"
 	blockchain "github.com/Eacred/eacrd/blockchain/standalone"
 	"github.com/Eacred/eacrd/chaincfg/chainhash"
@@ -1022,26 +1022,26 @@ func (w *Wallet) mixedSplit(ctx context.Context, req *PurchaseTicketsRequest, ne
 		expiry    = 0
 	)
 	pairing := coinjoin.EncodeDesc(coinjoin.P2PKHv0, int64(neededPerTicket), txVersion, locktime, expiry)
-	cj := w.newCsppJoin(ctx, change, neededPerTicket, req.MixedSplitAccount, req.MixedAccountBranch, req.Count)
+	cj := w.newEACsppJoin(ctx, change, neededPerTicket, req.MixedSplitAccount, req.MixedAccountBranch, req.Count)
 	for i, in := range atx.Tx.TxIn {
 		cj.addTxIn(atx.PrevScripts[i], in)
 	}
 
-	csppSession, err := cspp.NewSession(rand.Reader, infoLog, pairing, req.Count)
+	eacsppSession, err := eacspp.NewSession(rand.Reader, infoLog, pairing, req.Count)
 	if err != nil {
 		return
 	}
 	var conn net.Conn
-	if req.DialCSPPServer != nil {
-		conn, err = req.DialCSPPServer(ctx, "tcp", req.CSPPServer)
+	if req.DialEACSPPServer != nil {
+		conn, err = req.DialEACSPPServer(ctx, "tcp", req.EACSPPServer)
 	} else {
-		conn, err = tls.Dial("tcp", req.CSPPServer, nil)
+		conn, err = tls.Dial("tcp", req.EACSPPServer, nil)
 	}
 	if err != nil {
 		return
 	}
-	log.Infof("Dialed CSPPServer %v -> %v", conn.LocalAddr(), conn.RemoteAddr())
-	err = csppSession.DiceMix(ctx, conn, cj)
+	log.Infof("Dialed EACSPPServer %v -> %v", conn.LocalAddr(), conn.RemoteAddr())
+	err = eacsppSession.DiceMix(ctx, conn, cj)
 	if err != nil {
 		return
 	}
@@ -1180,7 +1180,7 @@ func (w *Wallet) purchaseTickets(ctx context.Context, op errors.Op, n NetworkBac
 		return w.nextAddress(ctx, op, w.persistReturnedChild(ctx, maybeDBTX), account, branch, WithGapPolicyIgnore())
 	}
 
-	if w.addressReuse && req.CSPPServer == "" {
+	if w.addressReuse && req.EACSPPServer == "" {
 		xpub := w.addressBuffers[udb.DefaultAccountNum].albExternal.branchXpub
 		addr, err := deriveChildAddress(xpub, 0, w.chainParams)
 		if err != nil {
@@ -1348,7 +1348,7 @@ func (w *Wallet) purchaseTickets(ctx context.Context, op errors.Op, n NetworkBac
 	var splitTx *wire.MsgTx
 	var splitOutputIndexes []int
 	switch {
-	case req.CSPPServer != "":
+	case req.EACSPPServer != "":
 		splitTx, splitOutputIndexes, err = w.mixedSplit(ctx, req, neededPerTicket)
 	case req.poolAddress != nil:
 		splitTx, splitOutputIndexes, err = w.vspSplit(ctx, req, neededPerTicket, vspFee)
@@ -1427,7 +1427,7 @@ func (w *Wallet) purchaseTickets(ctx context.Context, op errors.Op, n NetworkBac
 		var addrVote, addrSubsidy dcrutil.Address
 		err := walletdb.Update(ctx, w.db, func(dbtx walletdb.ReadWriteTx) error {
 			addrVote = req.VotingAddress
-			if addrVote == nil && req.CSPPServer == "" {
+			if addrVote == nil && req.EACSPPServer == "" {
 				addrVote = w.ticketAddress
 			}
 			if addrVote == nil {
@@ -1439,7 +1439,7 @@ func (w *Wallet) purchaseTickets(ctx context.Context, op errors.Op, n NetworkBac
 
 			var subsidyAccount = req.SourceAccount
 			var branch uint32 = 1
-			if req.CSPPServer != "" {
+			if req.EACSPPServer != "" {
 				subsidyAccount = req.MixedAccount
 				branch = req.MixedAccountBranch
 			}

@@ -19,7 +19,7 @@ var errMissingGen missingGenError
 func (missingGenError) Error() string   { return "coinjoin is missing gen output" }
 func (missingGenError) MissingMessage() {}
 
-type csppJoin struct {
+type eacsppJoin struct {
 	tx            *wire.MsgTx
 	txInputs      map[wire.OutPoint]int
 	myPrevScripts [][]byte
@@ -36,8 +36,8 @@ type csppJoin struct {
 	ctx context.Context
 }
 
-func (w *Wallet) newCsppJoin(ctx context.Context, change *wire.TxOut, amount dcrutil.Amount, mixAccount, mixBranch uint32, mcount int) *csppJoin {
-	cj := &csppJoin{
+func (w *Wallet) newEACsppJoin(ctx context.Context, change *wire.TxOut, amount dcrutil.Amount, mixAccount, mixBranch uint32, mcount int) *eacsppJoin {
+	cj := &eacsppJoin{
 		tx:         &wire.MsgTx{Version: 1},
 		change:     change,
 		mcount:     mcount,
@@ -53,14 +53,14 @@ func (w *Wallet) newCsppJoin(ctx context.Context, change *wire.TxOut, amount dcr
 	return cj
 }
 
-func (c *csppJoin) addTxIn(prevScript []byte, in *wire.TxIn) {
+func (c *eacsppJoin) addTxIn(prevScript []byte, in *wire.TxIn) {
 	c.tx.TxIn = append(c.tx.TxIn, in)
 	c.myPrevScripts = append(c.myPrevScripts, prevScript)
 	c.myIns = append(c.myIns, in)
 }
 
-func (c *csppJoin) Gen() ([][]byte, error) {
-	const op errors.Op = "cspp.Gen"
+func (c *eacsppJoin) Gen() ([][]byte, error) {
+	const op errors.Op = "eacspp.Gen"
 	gen := make([][]byte, c.mcount)
 	c.genScripts = make([][]byte, c.mcount)
 	var updates []func(walletdb.ReadWriteTx) error
@@ -94,8 +94,8 @@ func (c *csppJoin) Gen() ([][]byte, error) {
 	return gen, nil
 }
 
-func (c *csppJoin) Confirm() error {
-	const op errors.Op = "cspp.Confirm"
+func (c *eacsppJoin) Confirm() error {
+	const op errors.Op = "eacspp.Confirm"
 	err := walletdb.View(c.ctx, c.wallet.db, func(dbtx walletdb.ReadTx) error {
 		addrmgrNs := dbtx.ReadBucket(waddrmgrNamespaceKey)
 		for outx, in := range c.myIns {
@@ -138,18 +138,18 @@ func (c *csppJoin) Confirm() error {
 	return nil
 }
 
-func (c *csppJoin) mixOutputIndexes() []int {
+func (c *eacsppJoin) mixOutputIndexes() []int {
 	return c.genIndex
 }
 
-func (c *csppJoin) MarshalBinary() ([]byte, error) {
+func (c *eacsppJoin) MarshalBinary() ([]byte, error) {
 	buf := new(bytes.Buffer)
 	buf.Grow(c.tx.SerializeSize())
 	err := c.tx.Serialize(buf)
 	return buf.Bytes(), err
 }
 
-func (c *csppJoin) UnmarshalBinary(b []byte) error {
+func (c *eacsppJoin) UnmarshalBinary(b []byte) error {
 	tx := new(wire.MsgTx)
 	err := tx.Deserialize(bytes.NewReader(b))
 	if err != nil {

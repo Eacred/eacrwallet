@@ -2469,7 +2469,7 @@ func makeOutputs(pairs map[string]dcrutil.Amount, chainParams *chaincfg.Params) 
 // All errors are returned in dcrjson.RPCError format
 func (s *Server) sendPairs(ctx context.Context, w *wallet.Wallet, amounts map[string]dcrutil.Amount, account uint32, minconf int32) (string, error) {
 	changeAccount := account
-	if s.cfg.CSPPServer != "" {
+	if s.cfg.EACSPPServer != "" {
 		mixAccount, err := w.AccountNumber(ctx, s.cfg.MixAccount)
 		if err != nil {
 			return "", err
@@ -3786,7 +3786,7 @@ func (s *Server) walletPassphraseChange(ctx context.Context, icmd interface{}) (
 
 func (s *Server) mixOutput(ctx context.Context, icmd interface{}) (interface{}, error) {
 	cmd := icmd.(*types.MixOutputCmd)
-	if s.cfg.CSPPServer == "" {
+	if s.cfg.EACSPPServer == "" {
 		return nil, errors.E("CoinShuffle++ server is not configured")
 	}
 	w, ok := s.walletLoader.LoadedWallet()
@@ -3814,8 +3814,8 @@ func (s *Server) mixOutput(ctx context.Context, icmd interface{}) (interface{}, 
 		return nil, err
 	}
 
-	dial := s.cfg.DialCSPPServer
-	server := s.cfg.CSPPServer
+	dial := s.cfg.DialEACSPPServer
+	server := s.cfg.EACSPPServer
 	mixBranch := s.cfg.MixBranch
 
 	err = w.MixOutput(ctx, dial, server, outpoint, changeAccount, mixAccount, mixBranch)
@@ -3823,7 +3823,7 @@ func (s *Server) mixOutput(ctx context.Context, icmd interface{}) (interface{}, 
 }
 
 func (s *Server) mixAccount(ctx context.Context, icmd interface{}) (interface{}, error) {
-	if s.cfg.CSPPServer == "" {
+	if s.cfg.EACSPPServer == "" {
 		return nil, errors.E("CoinShuffle++ server is not configured")
 	}
 	w, ok := s.walletLoader.LoadedWallet()
@@ -3846,8 +3846,8 @@ func (s *Server) mixAccount(ctx context.Context, icmd interface{}) (interface{},
 		return nil, err
 	}
 
-	dial := s.cfg.DialCSPPServer
-	server := s.cfg.CSPPServer
+	dial := s.cfg.DialEACSPPServer
+	server := s.cfg.EACSPPServer
 	mixBranch := s.cfg.MixBranch
 
 	err = w.MixAccount(ctx, dial, server, changeAccount, mixAccount, mixBranch)

@@ -3,6 +3,10 @@ module github.com/Eacred/eacrwallet
 go 1.12
 
 require (
+	github.com/Eacred/base58 v1.0.6 // indirect
+	github.com/Eacred/eacrd v0.0.0-20200213235559-e400ba00f559
+	github.com/Eacred/go-socks v1.1.1
+	github.com/Eacred/slog v1.0.1
 	github.com/golang/protobuf v1.3.3
 	github.com/gorilla/websocket v1.4.1
 	github.com/jessevdk/go-flags v1.4.0

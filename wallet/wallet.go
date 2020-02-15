@@ -1195,7 +1195,7 @@ type PurchaseTicketsRequest struct {
 	VotingAddress dcrutil.Address
 	MinConf       int32
 	Expiry        int32
-	VotingAccount uint32 // Used when VotingAddress == nil, or CSPPServer != ""
+	VotingAccount uint32 // Used when VotingAddress == nil, or EACSPPServer != ""
 
 	// may be set by deprecated methods, subject to change
 	minBalance  dcrutil.Amount
@@ -1206,8 +1206,8 @@ type PurchaseTicketsRequest struct {
 	ticketFee   dcrutil.Amount
 
 	// Mixed split buying through CoinShuffle++
-	CSPPServer         string
-	DialCSPPServer     DialFunc
+	EACSPPServer         string
+	DialEACSPPServer     DialFunc
 	MixedAccount       uint32
 	MixedAccountBranch uint32
 	MixedSplitAccount  uint32

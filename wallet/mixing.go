@@ -10,8 +10,8 @@ import (
 	"crypto/tls"
 	"net"
 
-	"github.com/Eacred/cspp"
-	"github.com/Eacred/cspp/coinjoin"
+	"github.com/Eacred/eacspp"
+	"github.com/Eacred/eacspp/coinjoin"
 	"github.com/Eacred/eacrd/dcrutil"
 	"github.com/Eacred/eacrd/wire"
 	"github.com/Eacred/eacrwallet/errors"
@@ -52,7 +52,7 @@ var errNoSplitDenomination = errors.New("no suitable split denomination")
 // configuration is provided by the method, not the caller.
 type DialFunc func(ctx context.Context, network, addr string) (net.Conn, error)
 
-func (w *Wallet) MixOutput(ctx context.Context, dialTLS DialFunc, csppserver string, output *wire.OutPoint, changeAccount, mixAccount, mixBranch uint32) error {
+func (w *Wallet) MixOutput(ctx context.Context, dialTLS DialFunc, eacsppserver string, output *wire.OutPoint, changeAccount, mixAccount, mixBranch uint32) error {
 	op := errors.Opf("wallet.MixOutput(%v)", output)
 
 	var updates []func(walletdb.ReadWriteTx) error
@@ -141,7 +141,7 @@ func (w *Wallet) MixOutput(ctx context.Context, dialTLS DialFunc, csppserver str
 	}
 
 	log.Infof("Mixing output %v (%v)", output, amount)
-	cj := w.newCsppJoin(ctx, change, mixValue, mixAccount, mixBranch, int(count))
+	cj := w.newEACsppJoin(ctx, change, mixValue, mixAccount, mixBranch, int(count))
 	cj.addTxIn(prevScript, &wire.TxIn{
 		PreviousOutPoint: *output,
 		ValueIn:          int64(amount),
@@ -153,20 +153,20 @@ func (w *Wallet) MixOutput(ctx context.Context, dialTLS DialFunc, csppserver str
 		expiry    = 0
 	)
 	pairing := coinjoin.EncodeDesc(coinjoin.P2PKHv0, int64(mixValue), txVersion, locktime, expiry)
-	ses, err := cspp.NewSession(rand.Reader, infoLog, pairing, count)
+	ses, err := eacspp.NewSession(rand.Reader, infoLog, pairing, count)
 	if err != nil {
 		return errors.E(op, err)
 	}
 	var conn net.Conn
 	if dialTLS != nil {
-		conn, err = dialTLS(ctx, "tcp", csppserver)
+		conn, err = dialTLS(ctx, "tcp", eacsppserver)
 	} else {
-		conn, err = tls.Dial("tcp", csppserver, nil)
+		conn, err = tls.Dial("tcp", eacsppserver, nil)
 	}
 	if err != nil {
 		return errors.E(op, err)
 	}
-	log.Infof("Dialed CSPPServer %v -> %v", conn.LocalAddr(), conn.RemoteAddr())
+	log.Infof("Dialed EACSPPServer %v -> %v", conn.LocalAddr(), conn.RemoteAddr())
 	err = ses.DiceMix(ctx, conn, cj)
 	if err != nil {
 		return errors.E(op, err)
@@ -191,7 +191,7 @@ func (w *Wallet) MixOutput(ctx context.Context, dialTLS DialFunc, csppserver str
 
 // MixAccount mixes all possible outputs of a mixing change account into
 // standard denominations, creating newly mixed outputs for a mixed account.
-func (w *Wallet) MixAccount(ctx context.Context, dialTLS DialFunc, csppserver string, changeAccount, mixAccount, mixBranch uint32) error {
+func (w *Wallet) MixAccount(ctx context.Context, dialTLS DialFunc, eacsppserver string, changeAccount, mixAccount, mixBranch uint32) error {
 	const op errors.Op = "wallet.MixAccount"
 
 	hold, err := w.holdUnlock()
@@ -213,7 +213,7 @@ func (w *Wallet) MixAccount(ctx context.Context, dialTLS DialFunc, csppserver st
 		}
 		op := &credits[i].OutPoint
 		g.Go(func() error {
-			err := w.MixOutput(ctx, dialTLS, csppserver, op, changeAccount, mixAccount, mixBranch)
+			err := w.MixOutput(ctx, dialTLS, eacsppserver, op, changeAccount, mixAccount, mixBranch)
 			if errors.Is(err, errNoSplitDenomination) {
 				return nil
 			}

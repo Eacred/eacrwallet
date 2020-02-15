@@ -260,19 +260,19 @@ func run(ctx context.Context) error {
 		var (
 			purchaseAccount    uint32 // enableticketbuyer
 			votingAccount      uint32 // enableticketbuyer
-			mixedAccount       uint32 // (enableticketbuyer && csppserver) || mixchange
-			changeAccount      uint32 // (enableticketbuyer && csppserver) || mixchange
-			ticketSplitAccount uint32 // enableticketbuyer && csppserver
+			mixedAccount       uint32 // (enableticketbuyer && eacsppserver) || mixchange
+			changeAccount      uint32 // (enableticketbuyer && eacsppserver) || mixchange
+			ticketSplitAccount uint32 // enableticketbuyer && eacsppserver
 
 			votingAddr  = cfg.TBOpts.votingAddress
 			poolFeeAddr = cfg.poolAddress
 		)
 		if cfg.EnableTicketBuyer {
 			purchaseAccount = lookup("purchaseaccount", cfg.PurchaseAccount)
-			if cfg.CSPPServer != "" {
+			if cfg.EACSPPServer != "" {
 				poolFeeAddr = nil
 			}
-			if cfg.CSPPServer != "" && cfg.TBOpts.VotingAccount == "" {
+			if cfg.EACSPPServer != "" && cfg.TBOpts.VotingAccount == "" {
 				err := errors.New("cannot run mixed ticketbuyer without --votingaccount")
 				log.Error(err)
 				return err
@@ -282,11 +282,11 @@ func run(ctx context.Context) error {
 				votingAddr = nil
 			}
 		}
-		if (cfg.EnableTicketBuyer && cfg.CSPPServer != "") || cfg.MixChange {
+		if (cfg.EnableTicketBuyer && cfg.EACSPPServer != "") || cfg.MixChange {
 			mixedAccount = lookup("mixedaccount", cfg.mixedAccount)
 			changeAccount = lookup("changeaccount", cfg.ChangeAccount)
 		}
-		if cfg.EnableTicketBuyer && cfg.CSPPServer != "" {
+		if cfg.EnableTicketBuyer && cfg.EACSPPServer != "" {
 			ticketSplitAccount = lookup("ticketsplitaccount", cfg.TicketSplitAccount)
 		}
 		if err != nil {
@@ -304,8 +304,8 @@ func run(ctx context.Context) error {
 				c.PoolFeeAddr = poolFeeAddr
 				c.Limit = int(cfg.TBOpts.Limit)
 				c.VotingAccount = votingAccount
-				c.CSPPServer = cfg.CSPPServer
-				c.DialCSPPServer = cfg.dialCSPPServer
+				c.EACSPPServer = cfg.EACSPPServer
+				c.DialEACSPPServer = cfg.dialEACSPPServer
 				c.MixChange = cfg.MixChange
 				c.MixedAccount = mixedAccount
 				c.MixedAccountBranch = cfg.mixedBranch

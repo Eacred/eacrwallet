@@ -43,9 +43,9 @@ type Config struct {
 	// Limit maximum number of purchased tickets per block
 	Limit int
 
-	// CSPP-related options
-	CSPPServer         string
-	DialCSPPServer     func(ctx context.Context, network, addr string) (net.Conn, error)
+	// EACSPP-related options
+	EACSPPServer         string
+	DialEACSPPServer     func(ctx context.Context, network, addr string) (net.Conn, error)
 	MixedAccount       uint32
 	MixedAccountBranch uint32
 	TicketSplitAccount uint32
@@ -220,8 +220,8 @@ func (tb *TB) buy(ctx context.Context, passphrase []byte, tip *wire.BlockHeader,
 	poolFeeAddr := tb.cfg.PoolFeeAddr
 	poolFees := tb.cfg.PoolFees
 	limit := tb.cfg.Limit
-	csppServer := tb.cfg.CSPPServer
-	dialCSPPServer := tb.cfg.DialCSPPServer
+	eacsppServer := tb.cfg.EACSPPServer
+	dialEACSPPServer := tb.cfg.DialEACSPPServer
 	votingAccount := tb.cfg.VotingAccount
 	mixedAccount := tb.cfg.MixedAccount
 	mixedBranch := tb.cfg.MixedAccountBranch
@@ -268,9 +268,9 @@ func (tb *TB) buy(ctx context.Context, passphrase []byte, tip *wire.BlockHeader,
 		MinConf:       minconf,
 		Expiry:        expiry,
 
-		// CSPP
-		CSPPServer:         csppServer,
-		DialCSPPServer:     dialCSPPServer,
+		// EACSPP
+		EACSPPServer:         eacsppServer,
+		DialEACSPPServer:     dialEACSPPServer,
 		VotingAccount:      votingAccount,
 		MixedAccount:       mixedAccount,
 		MixedAccountBranch: mixedBranch,
@@ -303,8 +303,8 @@ func (tb *TB) AccessConfig(f func(cfg *Config)) {
 func (tb *TB) mixChange(ctx context.Context) error {
 	// Read config
 	tb.mu.Lock()
-	dial := tb.cfg.DialCSPPServer
-	csppServer := tb.cfg.CSPPServer
+	dial := tb.cfg.DialEACSPPServer
+	eacsppServer := tb.cfg.EACSPPServer
 	mixedAccount := tb.cfg.MixedAccount
 	mixedBranch := tb.cfg.MixedAccountBranch
 	changeAccount := tb.cfg.ChangeAccount
@@ -318,5 +318,5 @@ func (tb *TB) mixChange(ctx context.Context) error {
 	ctx, task := trace.NewTask(ctx, "ticketbuyer.mixChange")
 	defer task.End()
 
-	return tb.wallet.MixAccount(ctx, dial, csppServer, changeAccount, mixedAccount, mixedBranch)
+	return tb.wallet.MixAccount(ctx, dial, eacsppServer, changeAccount, mixedAccount, mixedBranch)
 }

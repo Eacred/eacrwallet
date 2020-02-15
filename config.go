@@ -144,10 +144,10 @@ type config struct {
 	PipeRx            *uint `long:"piperx" description:"File descriptor or handle of read end pipe to enable parent -> child process communication"`
 	RPCListenerEvents bool  `long:"rpclistenerevents" description:"Notify JSON-RPC and gRPC listener addresses over the TX pipe"`
 
-	// CSPP
-	CSPPServer         string `long:"csppserver" description:"Network address of CoinShuffle++ server"`
-	CSPPServerCA       string `long:"csppserver.ca" description:"CoinShuffle++ Certificate Authority"`
-	dialCSPPServer     func(ctx context.Context, network, addr string) (net.Conn, error)
+	// EACSPP
+	EACSPPServer         string `long:"eacsppserver" description:"Network address of CoinShuffle++ server"`
+	EACSPPServerCA       string `long:"eacsppserver.ca" description:"CoinShuffle++ Certificate Authority"`
+	dialEACSPPServer     func(ctx context.Context, network, addr string) (net.Conn, error)
 	MixedAccount       string `long:"mixedaccount" description:"Account/branch used to derive CoinShuffle++ mixed outputs and voting rewards"`
 	mixedAccount       string
 	mixedBranch        uint32
@@ -695,19 +695,19 @@ func loadConfig(ctx context.Context) (*config, []string, error) {
 
 	// Create CoinShuffle++ TLS dialer based on server name and certificate
 	// authority settings.
-	csppTLSConfig := new(tls.Config)
-	if cfg.CSPPServer != "" {
-		csppTLSConfig.ServerName, _, err = net.SplitHostPort(cfg.CSPPServer)
+	eacsppTLSConfig := new(tls.Config)
+	if cfg.EACSPPServer != "" {
+		eacsppTLSConfig.ServerName, _, err = net.SplitHostPort(cfg.EACSPPServer)
 		if err != nil {
 			err := errors.Errorf("Cannot parse CoinShuffle++ "+
-				"server name %q: %v", cfg.CSPPServer, err)
+				"server name %q: %v", cfg.EACSPPServer, err)
 			fmt.Fprintln(os.Stderr, err.Error())
 			return loadConfigError(err)
 		}
 	}
-	if cfg.CSPPServerCA != "" {
-		cfg.CSPPServerCA = cleanAndExpandPath(cfg.CSPPServerCA)
-		ca, err := ioutil.ReadFile(cfg.CSPPServerCA)
+	if cfg.EACSPPServerCA != "" {
+		cfg.EACSPPServerCA = cleanAndExpandPath(cfg.EACSPPServerCA)
+		ca, err := ioutil.ReadFile(cfg.EACSPPServerCA)
 		if err != nil {
 			err := errors.Errorf("Cannot read CoinShuffle++ "+
 				"Certificate Authority file: %v", err)
@@ -716,14 +716,14 @@ func loadConfig(ctx context.Context) (*config, []string, error) {
 		}
 		pool := x509.NewCertPool()
 		pool.AppendCertsFromPEM(ca)
-		csppTLSConfig.RootCAs = pool
+		eacsppTLSConfig.RootCAs = pool
 	}
-	cfg.dialCSPPServer = func(ctx context.Context, network, addr string) (net.Conn, error) {
+	cfg.dialEACSPPServer = func(ctx context.Context, network, addr string) (net.Conn, error) {
 		conn, err := cfg.dial(ctx, network, addr)
 		if err != nil {
 			return nil, err
 		}
-		conn = tls.Client(conn, csppTLSConfig)
+		conn = tls.Client(conn, eacsppTLSConfig)
 		return conn, nil
 	}
 
